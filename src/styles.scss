@@ -12,7 +12,6 @@
 */
 
 /* Fonts */
-
 @font-face {
   font-family: 'Inter';
   src: url('/assets/fonts/Inter-Regular.woff2') format('woff2');
@@ -29,16 +28,33 @@
 
 /* Colors */
 :root {
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --electric-violet: oklch(53.18% 0.28 296.97);
-  --french-violet: oklch(47.66% 0.246 305.88);
-  --vivid-pink: oklch(69.02% 0.277 332.77);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --orange-red: oklch(63.32% 0.24 31.68);
+  /* --font-text: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-title: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  --font-accent: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol'; */
 
-  --gray-900: oklch(19.37% 0.006 300.98);
-  --gray-700: oklch(36.98% 0.014 302.71);
-  --gray-400: oklch(70.9% 0.015 304.04);
+
+  /* Colores base */
+  --background: oklch(100% 0 0);
+  --foreground: oklch(15% 0.05 250);
+  --muted: oklch(96% 0.01 250);
+  --muted-foreground: oklch(60% 0.02 250);
+
+  --accent: oklch(96% 0.01 250);
+  --accent-foreground: oklch(25% 0.03 250);
+
+  --destructive: oklch(65% 0.2 25);
+  --destructive-foreground: oklch(98% 0.01 250);
+
+  --border: oklch(92% 0.01 250);
+  --input: oklch(92% 0.01 250);
+  --ring: oklch(15% 0.05 250);
+
+  /* Colores primarios */
+  --primary: oklch(25% 0.03 250);
+  --primary-foreground: oklch(98% 0.01 250);
+
+  --secondary: oklch(96% 0.01 250);
+  --secondary-foreground: oklch(25% 0.03 250);
 }
 
 /* Global styles */
@@ -52,6 +68,7 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--gray-900);
 }
 
 *,
