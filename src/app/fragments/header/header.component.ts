@@ -5,8 +5,8 @@ import { LucideAngularModule, CircleX } from 'lucide-angular';
   selector: 'app-header',
   standalone: true,
   imports: [LucideAngularModule],
-  templateUrl: './header.html',
-  styleUrl: './header.scss',
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.scss',
 })
 export class Header {
   readonly CircleX = CircleX;
