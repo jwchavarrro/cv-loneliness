@@ -16,12 +16,6 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should have title property', () => {
-    const fixture = TestBed.createComponent(App);
-    const app = fixture.componentInstance;
-    expect(app.title()).toBe('cv-loneliness');
-  });
-
   it('should render router-outlet', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();

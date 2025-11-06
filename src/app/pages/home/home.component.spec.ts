@@ -26,10 +26,23 @@ describe('HomeComponent', () => {
     expect(compiled.querySelector('main')).toBeTruthy();
   });
 
-  it('should have a button with text "Iniciar"', () => {
+  it('should have a button with text "Explorar cv"', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     const button = compiled.querySelector('button');
-    expect(button?.textContent).toContain('Iniciar');
+    expect(button?.textContent).toContain('Explorar cv');
+  });
+
+  it('should toggle showButton signal when onImageClick is called', () => {
+    const initialValue = component.showButton();
+    component.onImageClick();
+    expect(component.showButton()).toBe(!initialValue);
+  });
+
+  it('should toggle showButton signal twice when onImageClick is called twice', () => {
+    const initialValue = component.showButton();
+    component.onImageClick();
+    component.onImageClick();
+    expect(component.showButton()).toBe(initialValue);
   });
 });
 
