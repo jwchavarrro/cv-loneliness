@@ -1,23 +1,17 @@
-<!--
-  Este archivo muestra una imagen de fondo y un botón que permite iniciar una acción.
-  Su estructura es simple y puede ser adaptada o personalizada según las necesidades
-  de la aplicación.
--->
-  
 <main class="home">
-    <section class="home__section">
-      <div class="home__section-image-container">
-        <img 
-          src="images/background/background-001.png" 
-          class="home__image" 
-          alt="Background"
-          (click)="onImageClick()">
-          @if (showButton()) {
-            <div class="dialogue-bubble"></div>
-          }
-      </div>
-      <div class="home__section-button-container">
-        <button class="button home__button">Explorar cv</button>
-      </div>
-    </section>
-  </main>
+  <section class="home__section">
+    <div class="home__section-image-container">
+      <img src="images/background/background-001.png" class="home__image" alt="Background"
+        (mouseenter)="onImageHover()">
+      @if (showDialogueBubble()) {
+      <home-dialogue-bubble [message]="'Hi, my name is Soledad and I am an English teacher.'" />
+      }
+    </div>
+    <div class="home__section-button-container">
+      <button class="home__button">Explorar cv</button>
+    </div>
+  </section>
+
+  <!-- Fragmentos -->
+  <section></section>
+</main>
