@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { LucideAngularModule, CircleX } from 'lucide-angular';
+import { LucideAngularModule, CircleX, Menu } from 'lucide-angular';
 
 @Component({
   selector: 'app-header',
@@ -10,4 +10,5 @@ import { LucideAngularModule, CircleX } from 'lucide-angular';
 })
 export class Header {
   readonly CircleX = CircleX;
+  readonly Menu = Menu;
 }
