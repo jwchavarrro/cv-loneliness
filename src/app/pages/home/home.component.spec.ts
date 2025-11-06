@@ -32,17 +32,17 @@ describe('HomeComponent', () => {
     expect(button?.textContent).toContain('Explorar cv');
   });
 
-  it('should toggle showButton signal when onImageClick is called', () => {
-    const initialValue = component.showButton();
-    component.onImageClick();
-    expect(component.showButton()).toBe(!initialValue);
+  it('should toggle showDialogueBubble signal when onImageHover is called', () => {
+    const initialValue = component.showDialogueBubble();
+    component.onImageHover();
+    expect(component.showDialogueBubble()).toBe(!initialValue);
   });
 
-  it('should toggle showButton signal twice when onImageClick is called twice', () => {
-    const initialValue = component.showButton();
-    component.onImageClick();
-    component.onImageClick();
-    expect(component.showButton()).toBe(initialValue);
+  it('should toggle showDialogueBubble signal twice when onImageHover is called twice', () => {
+    const initialValue = component.showDialogueBubble();
+    component.onImageHover();
+    component.onImageHover();
+    expect(component.showDialogueBubble()).toBe(initialValue);
   });
 });
 
