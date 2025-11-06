@@ -1,5 +1,5 @@
 import { Component, signal, inject } from '@angular/core';
-import { DialogueBubbleComponent } from "../../../../components";
+import { DialogueBubbleComponent } from "../../components/dialogue-bubble/dialogue-bubble.component";
 import { CvStore } from "../../../../stores/pages/home";
 
 @Component({

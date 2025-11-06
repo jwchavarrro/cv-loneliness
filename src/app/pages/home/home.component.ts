@@ -6,7 +6,6 @@
 import { Component, inject } from '@angular/core';
 
 // Import of components custom
-import { DialogueBubbleComponent } from '../../components';
 import { WelcomeComponent, CvComponent } from './fragments';
 import { CvStore } from '../../stores/pages/home';
 

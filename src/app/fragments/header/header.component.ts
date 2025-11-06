@@ -22,11 +22,13 @@ export class Header {
     { 
       icon: Menu, 
       ariaLabel: 'Menú',
+      condition: () => this.cvStore.showCv(),
       action: () => {}
     },
     { 
       icon: CircleX, 
       ariaLabel: 'Cerrar',
+      condition: () => this.cvStore.showCv(),
       action: () => this.cvStore.hideCvView()
     }
   ];
