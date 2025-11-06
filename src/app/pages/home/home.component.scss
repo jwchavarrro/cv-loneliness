@@ -16,9 +16,8 @@
 
     &:hover {
         cursor: pointer;
-        filter: drop-shadow(0 .5rem var(--color-pink-accent));
         transform: scale(1.05);
-        transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
@@ -33,39 +32,9 @@
     .home__image {
         width: 100%;
         height: 100%;
-    }
-
-    .dialogue-bubble {
-        position: absolute;
-        top: -15%;
-        right: -95%;
-        transform: translate(-50%, 0);
-        background: var(--color-white);
-        color: var(--color-black);
-        border-radius: 1rem;
-        z-index: 15;
-        width: 100%;
-        height: 100%;
-        max-width: 20rem;
-        max-height: 10rem;
-        pointer-events: none;
-        user-select: none;
-
-        &::after {
-            content: "";
-            position: absolute;
-            bottom: -15px;
-            left: 20%;
-            transform: translateX(-50%);
-            border-width: 16px 18px 0 18px;
-            border-style: solid;
-            border-color: var(--color-white) transparent transparent transparent;
-            display: block;
-            width: 0;
-        }
+        filter: drop-shadow(0 0.5rem var(--color-white));
     }
 }
-
 
 .home__section-button-container {
     position: relative;
@@ -73,21 +42,18 @@
 
     .home__button {
         background-color: var(--color-pink-accent);
-        padding: 1rem 5rem;
-        border: .5rem solid var(--color-pink);
-        color: var(--color-white);
-        font-family: var(--font-title);
-        font-size: 3rem;
-        font-weight: bold;
+        padding: 1rem 6rem;
+        border: 0.5rem solid var(--color-pink);
         border-radius: 5rem;
+        color: var(--color-white);
+        font-size: 4rem;
+        font-weight: bold;
         z-index: 2;
 
         &:hover {
             background-color: var(--color-pink);
             border-color: var(--color-pink);
             color: var(--color-pink-accent);
-            cursor: pointer;
-            transition: all .3s ease;
         }
     }
 }

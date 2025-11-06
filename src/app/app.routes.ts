@@ -1,10 +1,6 @@
 import { Routes } from '@angular/router';
 
-// Import of pages
-import { HomeComponent } from './pages/home/home.component';
-import { ContactComponent } from './pages/contact/contact.component';
-import { ExperienceComponent } from './pages/experience/experience.component';
-import { SkillsComponent } from './pages/skills/skills.component';
+import { HomeComponent, ContactComponent, ExperienceComponent, SkillsComponent } from './pages';
 
 export const routes: Routes = [
     {

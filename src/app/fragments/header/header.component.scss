@@ -1,0 +1,24 @@
+.header {
+    width: 95%;
+    margin: 0 auto;
+}
+
+.header__container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header__button {
+    background-color: transparent;
+    border: none;
+    color: var(--color-white);
+    padding: 1rem;
+
+    &:hover {
+        color: var(--color-pink-accent);
+    }
+}

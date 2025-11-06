@@ -1,5 +1,10 @@
 <header class="header">
-    <lucide-icon [img]="CircleX"></lucide-icon>
-    <lucide-icon [img]="Menu"></lucide-icon>
+    <div class="header__container">
+        @for (button of navigationButtonsHeader; track button.icon) {
+            <button class="header__button" [attr.aria-label]="button.ariaLabel">
+                <lucide-icon [img]="button.icon"></lucide-icon>
+            </button>
+        }
+    </div>
 </header>
 
