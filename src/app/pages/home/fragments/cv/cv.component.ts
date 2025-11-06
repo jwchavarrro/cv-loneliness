@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { CvStore } from '../../../../stores/pages/home';
 
 /**
  * @component Cv
@@ -12,5 +13,6 @@ import { Component } from '@angular/core';
   styleUrl: './cv.component.scss',
 })
 export class CvComponent {
-
+  // Store global (como Jotai atom)
+  cvStore = inject(CvStore);
 }

@@ -4,4 +4,4 @@
  */
 
 export { CvComponent } from './cv/cv.component';
-export { WelcomeComponent } from './welcome/welcome';
+export { WelcomeComponent } from './welcome/welcome.component';
