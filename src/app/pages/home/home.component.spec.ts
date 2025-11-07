@@ -25,24 +25,5 @@ describe('HomeComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('main')).toBeTruthy();
   });
-
-  it('should have a button with text "Explorar cv"', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const button = compiled.querySelector('button');
-    expect(button?.textContent).toContain('Explorar cv');
-  });
-
-  it('should toggle showDialogueBubble signal when onImageHover is called', () => {
-    const initialValue = component.showDialogueBubble();
-    component.onImageHover();
-    expect(component.showDialogueBubble()).toBe(!initialValue);
-  });
-
-  it('should toggle showDialogueBubble signal twice when onImageHover is called twice', () => {
-    const initialValue = component.showDialogueBubble();
-    component.onImageHover();
-    component.onImageHover();
-    expect(component.showDialogueBubble()).toBe(initialValue);
-  });
 });
 

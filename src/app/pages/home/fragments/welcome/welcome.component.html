@@ -1,0 +1,14 @@
+<section class="welcome">
+    <div class="welcome__image-container">
+        <img src="images/background/background-001.png" class="welcome__image" alt="Background"
+            (mouseenter)="onImageHover()">
+        @if (showDialogueBubble()) {
+        <home-dialogue-bubble 
+          [message]="'👋 Hi there! I’m Soledad, your friendly English teacher. Let’s explore and learn together! 😊'" 
+        />
+        }
+    </div>
+    <div class="welcome__button-container">
+        <button class="welcome__button" (click)="onExplorarCvClick()">Explorar CV</button>
+    </div>
+</section>
