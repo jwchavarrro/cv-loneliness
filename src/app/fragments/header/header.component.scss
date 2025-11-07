@@ -1,5 +1,5 @@
 .header {
-    width: 95%;
+    width: 100%;
     height: 100%;
     margin: 0 auto;
 }
@@ -17,11 +17,12 @@
     width: 5rem;
     height: 5rem;
     background-color: transparent;
-    color: var(--color-white);
+    color: var(--color-pink-accent);
     border: none;
-    cursor: pointer;
+            filter: drop-shadow(0 .1rem var(--color-pink));
 
     &:hover {
+        cursor: pointer;
         color: var(--color-pink-accent);
         scale: 1.1;
         rotate: -10deg;
