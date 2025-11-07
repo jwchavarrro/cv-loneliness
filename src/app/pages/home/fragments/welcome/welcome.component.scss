@@ -9,29 +9,32 @@
 
     &:hover {
         cursor: pointer;
-        transform: scale(1.05);
-        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 }
 
 .welcome__image-container {
     position: relative;
-    max-height: 65%;
+    height: 65%;
     margin: 0 auto;
     display: flex;
-    align-items: center;
+    align-items: end;
     justify-content: center;
 
     .welcome__image {
         width: 100%;
         height: 100%;
-        filter: drop-shadow(0 0.5rem var(--color-white));
+        filter: drop-shadow(0 .8rem var(--color-pink));
+
+        &:hover {
+            transform: scale(1.05);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
     }
 }
 
 .welcome__button-container {
     position: relative;
-    top: -1rem;
+    top: -2rem;
 
     .welcome__button {
         background-color: var(--color-pink-accent);
@@ -47,6 +50,45 @@
             background-color: var(--color-pink);
             border-color: var(--color-pink-accent);
             color: var(--color-pink-accent);
+            rotate: 2deg;
+            transition: rotate 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+    }
+}
+
+/* Responsive design for mobile and tablet */
+
+@media (max-width: 900px) {
+    .welcome__image-container {
+        height: fit-content;
+        .welcome__image {
+            max-height: 70%;
+        }
+    }
+
+    .welcome__button-container {
+        .welcome__button {
+            font-size: 4rem;
+            padding: 1rem 4rem;
+            border-width: .35rem;
+        }
+    }
+}
+
+@media (max-width: 600px) {
+    .welcome__image-container {
+        height: fit-content;
+
+        .welcome__image {
+            max-height: 60%;
+        }
+    }
+
+    .welcome__button-container {
+        .welcome__button {
+            font-size: 3rem;
+            padding: .7rem 3rem;
+            border-width: .25rem;
         }
     }
 }

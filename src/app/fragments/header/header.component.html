@@ -1,15 +1,26 @@
 <header class="header">
     <div class="header__container">
-        @for (button of navigationButtonsHeader; track button.icon) {
-            @if (button.condition()) {
-                <button 
-                    class="header__button" 
-                    [attr.aria-label]="button.ariaLabel"
-                    (click)="button.action()">
-                    <lucide-icon [img]="button.icon"></lucide-icon>
-                </button>
+        <div>
+            @for (button of navigationButtonsHeader; track button.icon; let i = $index) {
+                @if (button.condition()) {
+                    <app-tooltip [text]="button.ariaLabel" [position]="'bottom'">
+                        <button 
+                            class="header__button" 
+                            [attr.aria-label]="button.ariaLabel" 
+                            (click)="button.action()">
+                            <lucide-icon [img]="button.icon" [size]="60"></lucide-icon>
+                        </button>
+                    </app-tooltip>
+                }
             }
-        }
+        </div>
+        <app-tooltip [text]="'Cambiar idioma'" [position]="'bottom'">
+            <button 
+                class="header__button" 
+                [attr.aria-label]="'Cambiar idioma'" 
+                (click)="changeLanguage()">
+                <lucide-icon [img]="iconLanguages" [size]="60"></lucide-icon>
+            </button>
+        </app-tooltip>
     </div>
 </header>
-
