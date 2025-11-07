@@ -1,0 +1,12 @@
+<div 
+  class="tooltip-wrapper"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()">
+  <ng-content></ng-content>
+  @if (isVisible()) {
+    <div class="tooltip" [ngClass]="positionClass()">
+      <span class="tooltip__text">{{ text() }}</span>
+    </div>
+  }
+</div>
+

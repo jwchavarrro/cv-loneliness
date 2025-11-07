@@ -8,7 +8,6 @@
 
 .text--footer {
     font-size: .8rem;
-    line-height: 1.5;
     color: var(--color-white);
 }
 
@@ -17,5 +16,14 @@
 
     &:hover {
         color: var(--color-pink-accent);
+    }
+}
+
+/* Responsive design for mobile and tablet */
+
+@media (max-width: 600px) {
+    .footer {
+        flex-direction: column;
+        gap: 0;
     }
 }
