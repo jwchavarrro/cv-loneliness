@@ -1,11 +1,7 @@
-<!--
-  Este archivo muestra una imagen de fondo y un botón que permite iniciar una acción.
-  Su estructura es simple y puede ser adaptada o personalizada según las necesidades
-  de la aplicación.
--->
-  
-<main>
-    <img src="images/background/background-001.png" alt="Background">
-    <button>Iniciar</button>
+<main class="home">
+  @if (!cvStore.showCv()) {
+    <app-welcome></app-welcome>
+  } @else {
+    <app-cv></app-cv>
+  }
 </main>
-

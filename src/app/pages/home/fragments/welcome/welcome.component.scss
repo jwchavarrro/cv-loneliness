@@ -1,0 +1,52 @@
+.welcome {
+    width: 100%;
+    height: 80dvh;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    &:hover {
+        cursor: pointer;
+        transform: scale(1.05);
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+}
+
+.welcome__image-container {
+    position: relative;
+    max-height: 65%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .welcome__image {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 0.5rem var(--color-white));
+    }
+}
+
+.welcome__button-container {
+    position: relative;
+    top: -1rem;
+
+    .welcome__button {
+        background-color: var(--color-pink-accent);
+        padding: 1rem 6rem;
+        border: 0.5rem solid var(--color-pink);
+        border-radius: 5rem;
+        color: var(--color-white);
+        font-size: 4rem;
+        font-weight: bold;
+        z-index: 2;
+
+        &:hover {
+            background-color: var(--color-pink);
+            border-color: var(--color-pink-accent);
+            color: var(--color-pink-accent);
+        }
+    }
+}

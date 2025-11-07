@@ -25,11 +25,5 @@ describe('HomeComponent', () => {
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.querySelector('main')).toBeTruthy();
   });
-
-  it('should have a button with text "Iniciar"', () => {
-    const compiled = fixture.nativeElement as HTMLElement;
-    const button = compiled.querySelector('button');
-    expect(button?.textContent).toContain('Iniciar');
-  });
 });
 

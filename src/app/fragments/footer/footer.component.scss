@@ -1,0 +1,21 @@
+.footer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.text--footer {
+    font-size: .8rem;
+    line-height: 1.5;
+    color: var(--color-white);
+}
+
+.text--footer-link {
+    text-decoration: none;
+
+    &:hover {
+        color: var(--color-pink-accent);
+    }
+}
