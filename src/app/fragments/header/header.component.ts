@@ -49,5 +49,6 @@ export class Header {
       condition: () => this.cvStore.showCv(),
       action: () => {},
     },
+    
   ];
 }
