@@ -52,6 +52,11 @@
     overflow: hidden;
 }
 
+.text--bio {
+    font-size: 1.5rem;
+    text-align: end;
+}
+
 
 // Layout
 .bio__content {
@@ -60,8 +65,8 @@
     border: 1px solid var(--color-black);
     border-radius: 1rem;
     display: grid;
-    grid-template-rows: repeat(3, auto minmax(10rem, 1fr));
-    grid-template-columns: repeat(2, auto minmax(6rem, 1fr));
+    grid-template-rows: auto 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
 }
 
 .bio__item {
@@ -80,8 +85,8 @@
     &--2-1 {
         grid-row: 2;
         grid-column: 1;
-        border-bottom: 1px solid var(--color-black);
         border-right: 1px solid var(--color-black);
+        border-bottom: 1px solid var(--color-black);
     }
 
     &--2-2 {
@@ -135,9 +140,8 @@
         grid-column: 1;
         display: flex;
         flex-direction: column;
-        align-items: end;
-        justify-content: center;
-        padding: 7rem;
+        align-items: center;
+        gap: 5rem;
     }
 }
 
@@ -153,7 +157,7 @@
 }
 
 .text--subitem-1 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     text-align: right;
     font-style: italic;
 }
@@ -182,16 +186,6 @@
     z-index: -1;
 }
 
-.home-sticky-label {
-    position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: -4rem;
-    z-index: 1;
-    margin: 1rem 0;
-}
 
 /**
 * Row 2,3 con columnas
@@ -201,21 +195,28 @@
 .bio__item--3-1,
 .bio__item--3-2 {
     position: relative;
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .section {
     width: 100%;
     height: 100%;
-    border: 1px solid var(--color-black);
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 6rem;
+
+    home-sticky-label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
 }
 
 .section__content {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0;
     flex: 1;
 }
 
@@ -257,20 +258,14 @@
 
 // Hobbies
 .section__content--hobbies {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .hobby__item {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
-    padding: 1rem;
-    background-color: rgba(255, 224, 102, 0.2);
-    border: 1px solid var(--color-black);
-    border-radius: 0.3rem;
 }
 
 .hobby__icon {
@@ -316,40 +311,6 @@
     }
 }
 
-// Contact
-.section__contact {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: var(--color-orange, #ffe066);
-    border: 2px solid var(--color-black);
-    border-radius: 0.5rem;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-
-    // Estilos para el sticky-label dentro del contacto
-    home-sticky-label {
-        display: inline-block;
-        margin-bottom: 1rem;
-    }
-}
-
-.contact__info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.contact__item {
-    font-size: 1.1rem;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    color: var(--color-black);
-}
-
-.contact__icon {
-    font-size: 1.5rem;
-}
 
 
 // media queries
