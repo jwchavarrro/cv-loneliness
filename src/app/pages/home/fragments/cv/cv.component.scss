@@ -169,3 +169,45 @@
     border-radius: 50%;
     z-index: -1;
 }
+
+
+// media queries
+@media (max-width: 900px) {
+    .cv {
+        width: 90%;
+    }
+
+    .title--cv {
+        font-size: 4rem;
+    }
+
+    .text--cv {
+        font-size: 1rem;
+    }
+
+    .bio__subitem--image {
+        width: 15rem;
+        height: 25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .cv {
+        width: 100%;
+
+    }
+
+    .title--cv {
+        font-size: 3rem;
+    }
+
+    .text--cv {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .bio__subitem--image {
+        width: 15rem;
+        height: 25rem;
+    }
+}
