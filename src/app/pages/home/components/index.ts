@@ -4,4 +4,5 @@
  */
 
 export { DialogueBubbleComponent } from './dialogue-bubble/dialogue-bubble.component';
+export { StickyLabelComponent } from './sticky-label/sticky-label.component';
 

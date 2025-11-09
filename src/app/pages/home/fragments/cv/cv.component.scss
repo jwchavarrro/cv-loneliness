@@ -32,7 +32,7 @@
     width: 100%;
     max-width: 90rem;
     height: 100%;
-    min-height: 100rem;
+    min-height: 90rem;
     margin: 0 auto;
     background-color: var(--color-beige, #fffef5);
     background-image:
@@ -52,6 +52,11 @@
     overflow: hidden;
 }
 
+.text--bio {
+    font-size: 1.5rem;
+    text-align: end;
+}
+
 
 // Layout
 .bio__content {
@@ -60,22 +65,28 @@
     border: 1px solid var(--color-black);
     border-radius: 1rem;
     display: grid;
-    grid-template-rows: 1fr 2fr 1fr;
+    grid-template-rows: auto 1fr 1fr;
     grid-template-columns: repeat(2, 1fr);
 }
 
 .bio__item {
-
+    /**
+     * Row 1
+     */
     &--row-1 {
         grid-row: 1;
         grid-column: 1 / -1;
+        border-bottom: 1px solid var(--color-black);
     }
 
+    /**
+     * Row 2
+     */
     &--2-1 {
         grid-row: 2;
         grid-column: 1;
-        border-bottom: 1px solid var(--color-black);
         border-right: 1px solid var(--color-black);
+        border-bottom: 1px solid var(--color-black);
     }
 
     &--2-2 {
@@ -84,6 +95,9 @@
         border-bottom: 1px solid var(--color-black);
     }
 
+    /**
+     * Row 3
+     */
     &--3-1 {
         grid-row: 3;
         grid-column: 1;
@@ -96,6 +110,9 @@
     }
 }
 
+/**
+* Row 1 - Subgrid
+*/
 .bio__subgrid {
     position: relative;
     width: 100%;
@@ -114,44 +131,43 @@
         flex-direction: column;
         align-items: end;
         justify-content: center;
-        padding-right: 10rem;
+        padding: 7rem;
+        gap: 0;
     }
 
     &--2 {
         grid-row: 2;
         grid-column: 1;
-        border-bottom: 1px solid var(--color-black);
-        padding-right: 10rem;
         display: flex;
         flex-direction: column;
-        align-items: end;
-        justify-content: center;
+        align-items: center;
+        gap: 5rem;
     }
 }
 
-// Elements layout
-.text--bio {
+/**
+* Elements row 1
+*/
+.title--subitem-1 {
     font-family: var(--font-accent);
     font-size: 9rem;
     font-weight: bold;
     margin: 0;
-    border: 1px solid var(--color-black);
+    line-height: 3rem;
 }
 
-.text--bio-subtext {
-    max-width: 40rem;
-    font-size: 2rem;
-    text-align: center;
+.text--subitem-1 {
+    font-size: 1.2rem;
+    text-align: right;
     font-style: italic;
-    border: 1px solid var(--color-black);
 }
 
 .bio__subitem--image {
     position: absolute;
     bottom: -1rem;
     left: 0;
-    width: 25rem;
-    height: 35rem;
+    width: 35rem;
+    height: 45rem;
     filter: drop-shadow(.5rem .2rem var(--color-white));
     z-index: 1;
 }
@@ -159,7 +175,7 @@
 .bio__subitem--image::before {
     content: "";
     position: absolute;
-    left: 60%;
+    left: 70%;
     top: 40%;
     transform: translate(-50%, -50%);
     width: 24rem;
@@ -168,4 +184,188 @@
     opacity: .8;
     border-radius: 50%;
     z-index: -1;
+}
+
+
+/**
+* Row 2,3 con columnas
+*/
+.bio__item--2-1,
+.bio__item--2-2,
+.bio__item--3-1,
+.bio__item--3-2 {
+    position: relative;
+    padding: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.section {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+
+    home-sticky-label {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+    }
+}
+
+.section__content {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    flex: 1;
+}
+
+.section__item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 1rem;
+}
+
+.section__year {
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+    color: var(--color-black);
+}
+
+.section__subtitle {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--color-black);
+}
+
+.section__subtitle--institution {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 0;
+    color: var(--color-black);
+    opacity: 0.8;
+}
+
+.section__description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin: 0;
+    color: var(--color-black);
+}
+
+// Hobbies
+.section__content--hobbies {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hobby__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hobby__icon {
+    font-size: 2rem;
+}
+
+.hobby__text {
+    font-size: 1rem;
+    margin: 0;
+    text-align: center;
+    color: var(--color-black);
+}
+
+// Skills
+.section__content--skills {
+    flex: 1;
+}
+
+.skills__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.skills__item {
+    font-size: 1.1rem;
+    padding: 0.8rem 1rem;
+    background-color: rgba(255, 224, 102, 0.2);
+    border: 1px solid var(--color-black);
+    border-radius: 0.3rem;
+    position: relative;
+    padding-left: 2rem;
+
+    &::before {
+        content: "•";
+        position: absolute;
+        left: 0.8rem;
+        font-size: 1.5rem;
+        color: var(--color-black);
+    }
+}
+
+
+
+// media queries
+@media (max-width: 900px) {
+    .cv {
+        width: 90%;
+    }
+
+    .title--cv {
+        font-size: 4rem;
+    }
+
+    .text--cv {
+        font-size: 1rem;
+    }
+
+    .bio {
+        padding: 1.5rem;
+    }
+
+    .bio__content {
+        border-radius: .5rem;
+    }
+
+    .bio__subitem--image {
+        width: 15rem;
+        height: 25rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .cv {
+        width: 100%;
+
+    }
+
+    .title--cv {
+        font-size: 3rem;
+    }
+
+    .bio {
+        padding: 1rem;
+    }
+
+    .bio__content {
+        border-radius: .5rem;
+    }
+
+    .text--cv {
+        font-size: 1rem;
+        max-width: 100%;
+    }
+
+    .bio__subitem--image {
+        width: 15rem;
+        height: 25rem;
+    }
 }

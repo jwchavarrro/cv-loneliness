@@ -29,15 +29,28 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'text-summary' },
+        { type: 'text' }
       ],
       check: {
         global: {
-          statements: 60,
-          branches: 60,
-          functions: 60,
-          lines: 60
+          statements: 80,
+          branches: 80,
+          functions: 80,
+          lines: 80
+        },
+        each: {
+          statements: 80,
+          branches: 80,
+          functions: 80,
+          lines: 80
         }
+      },
+      watermarks: {
+        statements: [70, 80],
+        functions: [70, 80],
+        branches: [70, 80],
+        lines: [70, 80]
       }
     },
     reporters: ['progress', 'kjhtml'],
