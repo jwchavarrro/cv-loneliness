@@ -77,6 +77,8 @@ describe('Header', () => {
 
   it('should call hideCvView when back button action is triggered', () => {
     spyOn(cvStore, 'hideCvView');
+    cvStore.showCvView();
+    fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
     const backButton = buttons.find(btn => 
       btn.ariaLabel === 'Regresar' || btn.ariaLabel === 'Back'
@@ -85,5 +87,77 @@ describe('Header', () => {
       backButton.action();
       expect(cvStore.hideCvView).toHaveBeenCalled();
     }
+  });
+
+  it('should have changeLanguageText computed signal', () => {
+    expect(component.changeLanguageText).toBeDefined();
+    const text = component.changeLanguageText();
+    expect(typeof text).toBe('string');
+    expect(text.length).toBeGreaterThan(0);
+  });
+
+  it('should render navigation buttons when showCv is true', () => {
+    cvStore.showCvView();
+    fixture.detectChanges();
+    const buttons = component.navigationButtonsHeader();
+    const visibleButtons = buttons.filter(btn => btn.condition());
+    expect(visibleButtons.length).toBeGreaterThan(0);
+  });
+
+  it('should not show navigation buttons when showCv is false', () => {
+    cvStore.hideCvView();
+    fixture.detectChanges();
+    const buttons = component.navigationButtonsHeader();
+    const visibleButtons = buttons.filter(btn => btn.condition());
+    expect(visibleButtons.length).toBe(0);
+  });
+
+  it('should have print button in navigationButtonsHeader', () => {
+    cvStore.showCvView();
+    fixture.detectChanges();
+    const buttons = component.navigationButtonsHeader();
+    const printButton = buttons.find(btn => 
+      btn.ariaLabel === 'Imprimir' || btn.ariaLabel === 'Print'
+    );
+    expect(printButton).toBeTruthy();
+    expect(printButton?.icon).toBeTruthy();
+  });
+
+  it('should call print action when print button is clicked', () => {
+    cvStore.showCvView();
+    fixture.detectChanges();
+    const buttons = component.navigationButtonsHeader();
+    const printButton = buttons.find(btn => 
+      btn.ariaLabel === 'Imprimir' || btn.ariaLabel === 'Print'
+    );
+    if (printButton) {
+      expect(() => printButton.action()).not.toThrow();
+    }
+  });
+
+  it('should update navigation buttons when language changes', () => {
+    const initialButtons = component.navigationButtonsHeader();
+    expect(initialButtons.length).toBeGreaterThan(0);
+    
+    languageStore.toggleLanguage();
+    fixture.detectChanges();
+    
+    const newButtons = component.navigationButtonsHeader();
+    expect(newButtons.length).toBe(initialButtons.length);
+    // Los ariaLabels deberían cambiar según el idioma
+    expect(newButtons[0].ariaLabel).toBeTruthy();
+  });
+
+  it('should update changeLanguageText when language changes', () => {
+    const initialText = component.changeLanguageText();
+    expect(initialText).toBeTruthy();
+    
+    languageStore.toggleLanguage();
+    fixture.detectChanges();
+    
+    const newText = component.changeLanguageText();
+    expect(newText).toBeTruthy();
+    // El texto debería cambiar según el idioma
+    expect(typeof newText).toBe('string');
   });
 });

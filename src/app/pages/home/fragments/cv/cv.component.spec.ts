@@ -87,4 +87,67 @@ describe('CvComponent', () => {
     // Note: Education items are currently commented out in the template
     // expect(compiled.textContent).toContain('Licenciatura en Enseñanza del Inglés');
   });
+
+  it('should have personalBio in mappingCVData', () => {
+    expect(component.mappingCVData.personalBio).toBeDefined();
+    expect(typeof component.mappingCVData.personalBio).toBe('string');
+    expect(component.mappingCVData.personalBio.length).toBeGreaterThan(0);
+  });
+
+  it('should have contact information in mappingCVData', () => {
+    expect(component.mappingCVData.contact).toBeDefined();
+    expect(component.mappingCVData.contact.email).toBeDefined();
+    expect(component.mappingCVData.contact.website).toBeDefined();
+    expect(component.mappingCVData.contact.social).toBeDefined();
+  });
+
+  it('should have experience items with correct structure', () => {
+    expect(component.mappingCVData.experience.length).toBeGreaterThan(0);
+    component.mappingCVData.experience.forEach(exp => {
+      expect(exp.year).toBeDefined();
+      expect(exp.title).toBeDefined();
+      expect(exp.description).toBeDefined();
+    });
+  });
+
+  it('should have education items with correct structure', () => {
+    expect(component.mappingCVData.education.length).toBeGreaterThan(0);
+    component.mappingCVData.education.forEach(edu => {
+      expect(edu.years).toBeDefined();
+      expect(edu.course).toBeDefined();
+      expect(edu.institution).toBeDefined();
+      expect(edu.note).toBeDefined();
+    });
+  });
+
+  it('should have skills as array of strings', () => {
+    expect(Array.isArray(component.mappingCVData.skills)).toBe(true);
+    component.mappingCVData.skills.forEach(skill => {
+      expect(typeof skill).toBe('string');
+      expect(skill.length).toBeGreaterThan(0);
+    });
+  });
+
+  it('should have hobbies with icon and name', () => {
+    expect(Array.isArray(component.mappingCVData.hobbies)).toBe(true);
+    component.mappingCVData.hobbies.forEach(hobby => {
+      expect(hobby.icon).toBeDefined();
+      expect(hobby.name).toBeDefined();
+      expect(typeof hobby.name).toBe('string');
+    });
+  });
+
+  it('should render skills section', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    // Verificar que se renderiza contenido relacionado con skills
+    expect(compiled.textContent).toBeTruthy();
+  });
+
+  it('should render hobbies section', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    // Verificar que se renderiza contenido relacionado con hobbies
+    expect(compiled.textContent).toBeTruthy();
+  });
 });

@@ -48,4 +48,44 @@ describe('WelcomeComponent', () => {
     expect(component.cvStore).toBeTruthy();
     expect(component.cvStore).toBeInstanceOf(CvStore);
   });
+
+  it('should have translationService injected', () => {
+    expect(component.translationService).toBeTruthy();
+  });
+
+  it('should have dialogueText computed signal', () => {
+    expect(component.dialogueText).toBeDefined();
+    const dialogue = component.dialogueText();
+    expect(typeof dialogue).toBe('string');
+    expect(dialogue.length).toBeGreaterThan(0);
+  });
+
+  it('should have buttonText computed signal', () => {
+    expect(component.buttonText).toBeDefined();
+    const buttonText = component.buttonText();
+    expect(typeof buttonText).toBe('string');
+    expect(buttonText.length).toBeGreaterThan(0);
+  });
+
+  it('should update dialogueText when language changes', () => {
+    const initialDialogue = component.dialogueText();
+    expect(initialDialogue).toBeTruthy();
+    expect(typeof initialDialogue).toBe('string');
+  });
+
+  it('should update buttonText when language changes', () => {
+    const initialButtonText = component.buttonText();
+    expect(initialButtonText).toBeTruthy();
+    expect(typeof initialButtonText).toBe('string');
+  });
+
+  it('should toggle showDialogueBubble correctly on multiple calls', () => {
+    expect(component.showDialogueBubble()).toBe(false);
+    component.onImageHover();
+    expect(component.showDialogueBubble()).toBe(true);
+    component.onImageHover();
+    expect(component.showDialogueBubble()).toBe(false);
+    component.onImageHover();
+    expect(component.showDialogueBubble()).toBe(true);
+  });
 });

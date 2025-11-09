@@ -23,7 +23,17 @@ describe('ContactComponent', () => {
 
   it('should render contact content', () => {
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('p')?.textContent).toContain('contact works!');
+    const paragraph = compiled.querySelector('p');
+    expect(paragraph).toBeTruthy();
+    expect(paragraph?.textContent).toContain('contact works!');
+  });
+
+  it('should have correct component instance', () => {
+    expect(component).toBeInstanceOf(ContactComponent);
+  });
+
+  it('should render without errors', () => {
+    expect(() => fixture.detectChanges()).not.toThrow();
   });
 });
 
