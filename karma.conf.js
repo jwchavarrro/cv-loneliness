@@ -29,7 +29,8 @@ module.exports = function (config) {
       subdir: '.',
       reporters: [
         { type: 'html' },
-        { type: 'text-summary' }
+        { type: 'text-summary' },
+        { type: 'text' }
       ],
       check: {
         global: {
@@ -37,7 +38,19 @@ module.exports = function (config) {
           branches: 60,
           functions: 60,
           lines: 60
+        },
+        each: {
+          statements: 60,
+          branches: 60,
+          functions: 60,
+          lines: 60
         }
+      },
+      watermarks: {
+        statements: [50, 60],
+        functions: [50, 60],
+        branches: [50, 60],
+        lines: [50, 60]
       }
     },
     reporters: ['progress', 'kjhtml'],
