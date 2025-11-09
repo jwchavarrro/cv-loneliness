@@ -4,11 +4,11 @@
             (mouseenter)="onImageHover()">
         @if (showDialogueBubble()) {
         <home-dialogue-bubble 
-          [message]="'👋 Welcome! I am Soledad, English teacher. Feel free to explore my professional profile.'"
+          [message]="dialogueText()"
         />
         }
     </div>
     <div class="welcome__button-container">
-        <button class="welcome__button" (click)="onExplorarCvClick()">Explore CV</button>
+        <button class="welcome__button" (click)="onExplorarCvClick()">{{ buttonText() }}</button>
     </div>
 </section>

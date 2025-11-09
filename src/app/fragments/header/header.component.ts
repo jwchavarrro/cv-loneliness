@@ -7,7 +7,9 @@ import { TooltipComponent } from '../../components';
 
 // Import of stores ( contextos )
 import { CvStore } from '../../stores/pages/home';
-import { LanguageStore } from '../../stores/language';
+import { LanguageStore } from '../../stores/language/language.store';
+
+// Import of services
 import { TranslationService } from '../../services';
 
 @Component({

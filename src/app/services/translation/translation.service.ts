@@ -14,6 +14,8 @@ export type Type_TRANSLATION_KEY =
   | 'fragments.header.changeLanguage'
   | 'fragments.header.back'
   | 'fragments.header.print'
+  | 'fragments.footer.copyright'
+  | 'fragments.footer.github'
   | 'pages.home.fragments.welcome.dialogue'
   | 'pages.home.fragments.welcome.button'
   | 'pages.home.fragments.cv.title'
@@ -29,6 +31,10 @@ interface TranslationsStructure {
       changeLanguage: string;
       back: string;
       print: string;
+    };
+    footer: {
+      copyright: string;
+      github: string;
     };
   };
   pages: {
@@ -64,6 +70,10 @@ export class TranslationService {
         changeLanguage: 'Cambiar idioma',
         back: 'Regresar',
         print: 'Imprimir'
+      },
+      footer: {
+        copyright: '© 2024 Jveloper. Todos los derechos reservados.',
+        github: 'GitHub'
       }
     },
     pages: {
@@ -89,6 +99,10 @@ export class TranslationService {
         changeLanguage: 'Change language',
         back: 'Back',
         print: 'Print'
+      },
+      footer: {
+        copyright: '© 2024 Jveloper. All rights reserved.',
+        github: 'GitHub'
       }
     },
     pages: {

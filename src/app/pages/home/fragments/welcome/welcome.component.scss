@@ -45,6 +45,8 @@
         font-size: 4rem;
         font-weight: bold;
         z-index: 2;
+        white-space: nowrap;
+        min-width: fit-content;
 
         &:hover {
             background-color: var(--color-pink);
@@ -68,9 +70,10 @@
 
     .welcome__button-container {
         .welcome__button {
-            font-size: 4rem;
-            padding: 1rem 4rem;
+            font-size: 3.5rem;
+            padding: 0.9rem 4rem;
             border-width: .35rem;
+            white-space: nowrap;
         }
     }
 }
@@ -86,9 +89,10 @@
 
     .welcome__button-container {
         .welcome__button {
-            font-size: 3rem;
-            padding: .7rem 3rem;
+            font-size: 2.5rem;
+            padding: 0.7rem 2.5rem;
             border-width: .25rem;
+            white-space: nowrap;
         }
     }
 }
