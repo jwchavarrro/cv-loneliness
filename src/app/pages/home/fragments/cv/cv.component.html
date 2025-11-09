@@ -21,7 +21,9 @@
                         </div>
                         <div class="bio__subitem bio__subitem--2">
                             <home-sticky-label [text]="'Personal Bio'" />
-                            <!-- <p class="text--bio text--bio--subitem-2">{{ mappingCVData.personalBio }}</p> -->
+                            <div class="text--bio-container">
+                                <p class="text--bio text--bio--subitem-2">{{ mappingCVData.personalBio }}</p>
+                            </div>
                         </div>
                         <div class="bio__subitem--image">
                             <img src="images/background/background-001.png" alt="Profile picture"
@@ -35,13 +37,13 @@
                     <div class="section">
                         <home-sticky-label [text]="'Experience'" />
                         <div class="section__content">
-                            <!-- @for (exp of mappingCVData.experience; track exp.year) {
-                                <div class="section__item">
-                                    <p class="section__year">{{ exp.year }}</p>
-                                    <p class="section__subtitle">{{ exp.title }}</p>
-                                    <p class="section__description">{{ exp.description }}</p>
-                                </div>
-                            } -->
+                            @for (exp of mappingCVData.experience; track exp.year) {
+                            <div class="section__item">
+                                <p class="">{{ exp.year }}</p>
+                                <p class="">{{ exp.title }}</p>
+                                <p class="">{{ exp.description }}</p>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>
@@ -51,43 +53,57 @@
                     <div class="section">
                         <home-sticky-label [text]="'Education'"></home-sticky-label>
                         <div class="section__content">
-                            <!-- @for (edu of mappingCVData.education; track edu.years) {
-                                <div class="section__item">
-                                    <p class="section__year">{{ edu.years }}</p>
-                                    <p class="section__subtitle">{{ edu.course }}</p>
-                                    <p class="section__subtitle--institution">{{ edu.institution }}</p>
-                                    <p class="section__description">{{ edu.note }}</p>
-                                </div>
-                            } -->
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Hobbies -->
-                <div class="bio__item bio__item--3-1">
-                    <div class="section">
-                        <home-sticky-label [text]="'Hobbies'"></home-sticky-label>
-                        <div class="section__content section__content--hobbies">
-                            <!-- @for (hobby of mappingCVData.hobbies; track hobby) {
-                                <div class="hobby__item">
-                                    <span class="hobby__icon">✨</span>
-                                    <p class="hobby__text">{{ hobby }}</p>
-                                </div>
-                            } -->
+                            @for (edu of mappingCVData.education; track edu.years) {
+                            <div class="section__item">
+                                <p class="">{{ edu.years }}</p>
+                                <p class="">{{ edu.course }}</p>
+                                <p class="">{{ edu.institution }}</p>
+                                <p class="">{{ edu.note }}</p>
+                            </div>
+                            }
                         </div>
                     </div>
                 </div>
 
                 <!-- Skills -->
-                <div class="bio__item bio__item--3-2">
-                    <div class="section">
-                        <home-sticky-label [text]="'Skills'"></home-sticky-label>
-                        <div class="section__content section__content--skills">
+                <div class="bio__item bio__item--3-1">
+                    <div class="section"><home-sticky-label [text]="'Skills'"></home-sticky-label>
+                        <div class="section__content">
                             <ul class="skills__list">
-                                <!-- @for (skill of mappingCVData.skills; track skill) {
-                                    <li class="skills__item">{{ skill }}</li>
-                                } -->
+                                @for (skill of mappingCVData.skills; track skill) {
+                                <li>{{ skill }}</li>
+                                }
                             </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Skills and contact -->
+                <div class="bio__item bio__item--3-2">
+                    <div class="bio__subgrid bio__subgrid--3-2">
+                        <div class="bio__subitem bio__subitem--3-2-1">
+                            <div class="section">
+                                <home-sticky-label [text]="'Hobbies'"></home-sticky-label>
+                                <div class="section__content section__content--hobbies">
+                                    @for (hobby of mappingCVData.hobbies; track hobby) {
+                                    <div class="hobby__item">
+                                        <lucide-icon [img]="hobby.icon" [size]="40"></lucide-icon>
+                                        <p class="hobby__text">{{ hobby.name }}</p>
+                                    </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bio__subitem bio__subitem--3-2-2">
+                            <div class="section">
+                                <home-sticky-label [text]="'Contact'"></home-sticky-label>
+                                <div class="section__content">
+                                    <p class="">{{ mappingCVData.contact.email }}</p>
+                                    <p class="">{{ mappingCVData.contact.website }}</p>
+                                    <p class="">{{ mappingCVData.contact.social }}</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
