@@ -1,0 +1,39 @@
+.sticky-label {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 0 1.5rem;
+  background-color: var(--color-orange, #ffe066);
+  border-radius: .3rem;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  transform: rotate(-5deg);
+  color: var(--color-black, #000);
+  white-space: nowrap;
+  z-index: 3;
+
+  &:hover {
+    transform: rotate(0deg) scale(1.05);
+  }
+
+  &__icon {
+    font-size: 1.4rem;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  &__text {
+    font-family: var(--font-accent);
+    font-size: 3rem;
+    display: inline-block;
+  }
+}
+
+// media queries
+/* @media (max-width: 900px) {
+  .sticky-label {}
+}
+
+@media (max-width: 600px) {
+  .sticky-label {}
+} */

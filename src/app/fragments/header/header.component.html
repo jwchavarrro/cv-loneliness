@@ -3,23 +3,23 @@
         <div>
             @for (button of navigationButtonsHeader; track button.icon; let i = $index) {
                 @if (button.condition()) {
-                    <app-tooltip [text]="button.ariaLabel" [position]="'bottom'">
+                    <app-tooltip [text]="button.ariaLabel" [position]="'right'">
                         <button 
                             class="header__button" 
                             [attr.aria-label]="button.ariaLabel" 
                             (click)="button.action()">
-                            <lucide-icon [img]="button.icon" [size]="60"></lucide-icon>
+                            <lucide-icon [img]="button.icon" [size]="30"></lucide-icon>
                         </button>
                     </app-tooltip>
                 }
             }
         </div>
-        <app-tooltip [text]="'Cambiar idioma'" [position]="'bottom'">
+        <app-tooltip [text]="'Cambiar idioma'" [position]="'left'">
             <button 
                 class="header__button" 
                 [attr.aria-label]="'Cambiar idioma'" 
                 (click)="changeLanguage()">
-                <lucide-icon [img]="iconLanguages" [size]="60"></lucide-icon>
+                <lucide-icon [img]="iconLanguages" [size]="30"></lucide-icon>
             </button>
         </app-tooltip>
     </div>

@@ -4,7 +4,5 @@
  */
 
 export { HomeComponent } from './home/home.component';
-export { SkillsComponent } from './skills/skills.component';
-export { ExperienceComponent } from './experience/experience.component';
 export { ContactComponent } from './contact/contact.component';
 

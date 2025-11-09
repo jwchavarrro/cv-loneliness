@@ -10,16 +10,13 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 1rem;
 }
 
 .header__button {
-    width: 5rem;
-    height: 5rem;
     background-color: transparent;
     color: var(--color-pink-accent);
     border: none;
-            filter: drop-shadow(0 .1rem var(--color-pink));
+    filter: drop-shadow(0 .1rem var(--color-pink));
 
     &:hover {
         cursor: pointer;
