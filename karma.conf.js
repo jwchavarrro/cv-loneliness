@@ -34,23 +34,23 @@ module.exports = function (config) {
       ],
       check: {
         global: {
-          statements: 60,
-          branches: 60,
-          functions: 60,
-          lines: 60
+          statements: 80,
+          branches: 80,
+          functions: 80,
+          lines: 80
         },
         each: {
-          statements: 60,
-          branches: 60,
-          functions: 60,
-          lines: 60
+          statements: 80,
+          branches: 80,
+          functions: 80,
+          lines: 80
         }
       },
       watermarks: {
-        statements: [50, 60],
-        functions: [50, 60],
-        branches: [50, 60],
-        lines: [50, 60]
+        statements: [70, 80],
+        functions: [70, 80],
+        branches: [70, 80],
+        lines: [70, 80]
       }
     },
     reporters: ['progress', 'kjhtml'],

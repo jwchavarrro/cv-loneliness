@@ -22,5 +22,22 @@ describe('DialogueBubbleComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have default message', () => {
+    expect(component.message()).toBe('¡Hola! 👋');
+  });
+
+  it('should render default message', () => {
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('¡Hola! 👋');
+  });
+
+  it('should render custom message when provided', () => {
+    fixture.componentRef.setInput('message', 'Custom message');
+    fixture.detectChanges();
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.textContent).toContain('Custom message');
+  });
 });
 
