@@ -1,6 +1,11 @@
 import { Component, inject } from '@angular/core';
-import { CvStore } from '../../../../stores/pages/home';
+
+// Import of components custom
 import { StickyLabelComponent } from '../../components';
+
+// Import of stores
+
+import { CvStore } from '../../../../stores/pages/home';
 
 /**
  * @component Cv

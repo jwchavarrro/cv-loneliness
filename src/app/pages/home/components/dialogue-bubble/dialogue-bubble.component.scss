@@ -7,13 +7,14 @@
   border-radius: 50%;
   box-shadow: 0 4px 18px rgba(0, 0, 0, 0.17);
   animation: bubbleIn 0.7s cubic-bezier(0.6, 0.2, 0.2, 1.2) both;
-  top: -2rem;
-  right: -13rem;
+  top: -5rem;
+  right: -15rem;
 
   /* Hace que el círculo abarque siempre todo el texto */
   aspect-ratio: 1 / 1;
   min-width: 12rem;
   min-height: 12rem;
+  max-width: 20rem;
   width: fit-content;
   height: auto;
   padding: 2rem;
@@ -22,7 +23,7 @@
   &::after {
     content: "";
     position: absolute;
-    bottom: 0.7rem;
+    bottom: .5rem;
     left: 3.6rem;
     width: 2.5rem;
     height: 2.5rem;
@@ -42,10 +43,12 @@
     line-height: 1.27;
     z-index: 1;
     word-break: break-word;
+    overflow-wrap: break-word;
     width: 100%;
     display: block;
     /* Ajusta el ancho del texto sin desbordar el círculo */
     max-width: 17rem;
+    min-width: 0;
   }
 }
 
@@ -67,17 +70,17 @@
 
 
 // media queries
-@media (max-width: 900px) {
+@media (max-width: 1023px) {
   .dialogue-bubble {
     right: -1.5rem;
-    top: 0rem;
+    top: 5rem;
     min-width: 9rem;
     min-height: 9rem;
-    padding: 1.3rem;
+    padding: 2.5rem;
 
     &::after {
       left: 2.3rem;
-      bottom: 0.7rem;
+      bottom: 1rem;
       width: 1.6rem;
       height: 1.6rem;
     }
@@ -85,18 +88,19 @@
     &__text {
       font-size: 1.3rem;
       max-width: 12rem;
+      min-width: 0;
     }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .dialogue-bubble {
-    right: 0.5rem;
-    top: 2.3rem; // Ajustado para que baje y sea visible en mobile
+    right: -5rem;
+    top: 5rem;
     min-width: 7rem;
     min-height: 7rem;
-    max-width: 12rem;
-    padding: 0.85rem;
+    max-width: 15rem;
+    padding: 2rem;
 
     &::after {
       left: 1rem;
@@ -109,6 +113,7 @@
     &__text {
       font-size: 0.99rem;
       max-width: 8.6rem;
+      min-width: 0;
     }
   }
 }

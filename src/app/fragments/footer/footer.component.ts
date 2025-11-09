@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
+
+// Import of services
+import { TranslationService } from '../../services';
 
 @Component({
   selector: 'app-footer',
@@ -8,5 +11,13 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.scss',
 })
 export class Footer {
+  translationService = inject(TranslationService);
 
+  // Traducciones reactivas
+  copyrightText = computed(() => 
+    this.translationService.translate('fragments.footer.copyright')
+  );
+  githubText = computed(() => 
+    this.translationService.translate('fragments.footer.github')
+  );
 }

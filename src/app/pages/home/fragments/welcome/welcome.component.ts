@@ -1,6 +1,13 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, computed } from '@angular/core';
+
+// Import of components custom
 import { DialogueBubbleComponent } from "../../components/dialogue-bubble/dialogue-bubble.component";
+
+// Import of stores
 import { CvStore } from "../../../../stores/pages/home";
+
+// Import of services
+import { TranslationService } from "../../../../services";
 
 @Component({
   selector: 'app-welcome',
@@ -10,11 +17,22 @@ import { CvStore } from "../../../../stores/pages/home";
   styleUrl: './welcome.component.scss',
 })
 export class WelcomeComponent {
-  // Store global (como Jotai atom)
+  // Stores
   cvStore = inject(CvStore);
+
+  // Services
+  translationService = inject(TranslationService);
 
   // Signals generales
   showDialogueBubble = signal<boolean>(false);
+
+  // Traducciones reactivas
+  dialogueText = computed(() => 
+    this.translationService.translate('pages.home.fragments.welcome.dialogue')
+  );
+  buttonText = computed(() => 
+    this.translationService.translate('pages.home.fragments.welcome.button')
+  );
 
   /**
    * @name onImageHover
