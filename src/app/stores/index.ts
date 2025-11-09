@@ -3,6 +3,6 @@
  * @description Exportaciones centralizadas de stores (como Jotai atoms)
  */
 
-export * from './language';
+export { LanguageStore } from './language/language.store';
 export * from './pages';
 
