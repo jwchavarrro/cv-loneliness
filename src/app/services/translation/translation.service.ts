@@ -1,5 +1,6 @@
 import { Injectable, computed, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
 import { firstValueFrom } from 'rxjs';
 
 // Import of stores
@@ -31,47 +32,6 @@ export type Type_TRANSLATION_KEY =
   | 'pages.home.fragments.cv.hobbies'
   | 'pages.home.fragments.cv.contact'
   | 'pages.home.fragments.cv.profession';
-
-/**
- * @interface TranslationsStructure
- * @description Estructura de traducciones que refleja la organización de carpetas
- */
-interface TranslationsStructure {
-  fragments: {
-    header: {
-      changeLanguage: string;
-      back: string;
-      print: string;
-    };
-    footer: {
-      copyright: string;
-      github: string;
-    };
-  };
-  pages: {
-    home: {
-      fragments: {
-        welcome: {
-          dialogue: string;
-          button: string;
-        };
-        cv: {
-          title: string;
-          subtitle: string;
-          description: string;
-          personalBio: string;
-          greeting: string;
-          experience: string;
-          education: string;
-          skills: string;
-          hobbies: string;
-          contact: string;
-          profession: string;
-        };
-      };
-    };
-  };
-}
 
 /**
  * @interface CvData
@@ -149,7 +109,8 @@ interface TranslationsFile {
 
 /**
  * @service TranslationService
- * @description Servicio para manejar las traducciones de la aplicación
+ * @description Servicio para manejar las traducciones de la aplicación usando ngx-translate
+ * Mantiene compatibilidad con la API anterior pero usa TranslateService internamente
  */
 @Injectable({
   providedIn: 'root'
@@ -157,174 +118,75 @@ interface TranslationsFile {
 export class TranslationService {
   private languageStore = inject(LanguageStore);
   private http = inject(HttpClient);
-  
-  // Signals para todas las traducciones cargadas desde JSON
-  private translationsEs = signal<TranslationsStructure | null>(null);
-  private translationsEn = signal<TranslationsStructure | null>(null);
+  private translateService = inject(TranslateService);
   
   // Signal para los datos del CV cargados desde JSON
   private cvDataEs = signal<CvData | null>(null);
   private cvDataEn = signal<CvData | null>(null);
   
-  // Computed signal que devuelve las traducciones según el idioma actual
-  private translations = computed(() => {
-    const lang = this.languageStore.currentLanguage();
-    const translations = lang === Enum_APP_LANGUAGE.ES ? this.translationsEs() : this.translationsEn();
-    // Si aún no se han cargado, retornar traducciones por defecto
-    if (!translations) {
-      return this.getDefaultTranslations(lang);
-    }
-    return translations;
-  });
+  // Signal para forzar la actualización cuando se cargan las traducciones
+  private translationsLoaded = signal<boolean>(false);
   
   // Computed signal que devuelve los datos del CV según el idioma actual
   cvData = computed(() => {
     const lang = this.languageStore.currentLanguage();
-    const data = lang === Enum_APP_LANGUAGE.ES ? this.cvDataEs() : this.cvDataEn();
-    return data;
+    return lang === Enum_APP_LANGUAGE.ES ? this.cvDataEs() : this.cvDataEn();
   });
   
   constructor() {
-    // Cargar todas las traducciones al inicializar el servicio
-    this.loadTranslations();
+    // Cargar los datos del CV al inicializar el servicio
+    this.loadCvData();
+    
+    this.translateService.onLangChange.subscribe(() => {
+      this.translationsLoaded.set(true);
+      setTimeout(() => {
+        this.translationsLoaded.update(v => !v);
+        this.translationsLoaded.update(v => !v);
+      }, 0);
+    });
+    
+    this.translateService.onDefaultLangChange.subscribe(() => {
+      this.translationsLoaded.set(true);
+      setTimeout(() => {
+        this.translationsLoaded.update(v => !v);
+        this.translationsLoaded.update(v => !v);
+      }, 0);
+    });
   }
   
   /**
-   * @name loadTranslations
-   * @description Carga todas las traducciones desde los archivos JSON
+   * @name loadCvData
+   * @description Carga los datos del CV desde los archivos JSON
    */
-  private async loadTranslations(): Promise<void> {
+  private async loadCvData(): Promise<void> {
     try {
       const [esData, enData] = await Promise.all([
         firstValueFrom(this.http.get<TranslationsFile>('/locales/es/common.json')),
         firstValueFrom(this.http.get<TranslationsFile>('/locales/en/common.json'))
       ]);
       
-      // Guardar las traducciones
-      this.translationsEs.set(esData.fragments ? {
-        fragments: esData.fragments,
-        pages: esData.pages
-      } : null);
-      this.translationsEn.set(enData.fragments ? {
-        fragments: enData.fragments,
-        pages: enData.pages
-      } : null);
-      
       // Guardar los datos del CV
       this.cvDataEs.set(esData.cv);
       this.cvDataEn.set(enData.cv);
     } catch (error) {
-      console.error('Error loading translations:', error);
+      // Error silencioso - los datos del CV no son críticos para i18n
     }
   }
   
   /**
-   * @name getDefaultTranslations
-   * @description Retorna traducciones por defecto mientras se cargan los JSON
-   */
-  private getDefaultTranslations(lang: Type_APP_LANGUAGE): TranslationsStructure {
-    if (lang === Enum_APP_LANGUAGE.ES) {
-      return {
-        fragments: {
-          header: {
-            changeLanguage: 'Cambiar idioma',
-            back: 'Regresar',
-            print: 'Imprimir'
-          },
-          footer: {
-            copyright: '© 2024 Jveloper. Todos los derechos reservados.',
-            github: 'GitHub'
-          }
-        },
-        pages: {
-          home: {
-            fragments: {
-              welcome: {
-                dialogue: '¡Bienvenido! Soy Soledad, profesora de inglés. Siéntete libre de explorar mi perfil profesional.',
-                button: 'Explorar CV'
-              },
-              cv: {
-                title: 'Curriculum Vitae',
-                subtitle: 'Perfil profesional',
-                description: 'Descubre mi trayectoria profesional, educación y habilidades. Este CV proporciona una visión general de mi experiencia y calificaciones.',
-                personalBio: 'Biografía Personal',
-                greeting: 'Hola, soy',
-                experience: 'Experiencia',
-                education: 'Educación',
-                skills: 'Habilidades',
-                hobbies: 'Pasatiempos',
-                contact: 'Contacto',
-                profession: 'Profesora de Inglés | Profesora'
-              }
-            }
-          }
-        }
-      };
-    } else {
-      return {
-        fragments: {
-          header: {
-            changeLanguage: 'Change language',
-            back: 'Back',
-            print: 'Print'
-          },
-          footer: {
-            copyright: '© 2024 Jveloper. All rights reserved.',
-            github: 'GitHub'
-          }
-        },
-        pages: {
-          home: {
-            fragments: {
-              welcome: {
-                dialogue: 'Welcome! I am Soledad, English teacher. Feel free to explore my professional profile.',
-                button: 'Explore CV'
-              },
-              cv: {
-                title: 'Curriculum Vitae',
-                subtitle: 'Professional profile',
-                description: 'Discover my professional journey, education, and skills. This CV provides an overview of my experience and qualifications.',
-                personalBio: 'Personal Bio',
-                greeting: "Hi, I'm",
-                experience: 'Experience',
-                education: 'Education',
-                skills: 'Skills',
-                hobbies: 'Hobbies',
-                contact: 'Contact',
-                profession: "English Teacher | Professor"
-              }
-            }
-          }
-        }
-      };
-    }
-  }
-
-
-  /**
    * @name translate
-   * @description Traduce una clave al idioma actual usando la ruta de carpetas
+   * @description Traduce una clave al idioma actual usando ngx-translate
    * Este método es reactivo: lee directamente el signal de idioma para que los computed signals
    * en los componentes se actualicen correctamente cuando cambia el idioma.
    * @param key - Clave de traducción (ej: 'fragments.header.changeLanguage')
    * @returns Texto traducido
    */
   translate(key: Type_TRANSLATION_KEY): string {
-    // Leer directamente el signal de idioma para que sea reactivo
-    const translations = this.translations();
+    this.languageStore.currentLanguage();
+    this.translationsLoaded();
     
-    const keys = key.split('.');
-    let value: unknown = translations;
-    
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = (value as Record<string, unknown>)[k];
-      } else {
-        return key; // Retorna la clave si no encuentra la traducción
-      }
-    }
-    
-    return typeof value === 'string' ? value : key;
+    const translation = this.translateService.instant(key);
+    return translation === key ? key : translation;
   }
 
   /**
@@ -335,7 +197,10 @@ export class TranslationService {
    * @returns Computed signal que retorna el texto traducido
    */
   translateComputed(key: Type_TRANSLATION_KEY) {
-    return computed(() => this.translate(key));
+    return computed(() => {
+      this.languageStore.currentLanguage();
+      return this.translate(key);
+    });
   }
 
   /**
@@ -346,4 +211,3 @@ export class TranslationService {
     return this.languageStore.getCurrentLanguage();
   }
 }
-

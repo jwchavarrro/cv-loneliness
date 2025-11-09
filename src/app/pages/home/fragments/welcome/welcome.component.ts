@@ -1,4 +1,5 @@
 import { Component, signal, inject, computed } from '@angular/core';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Import of components custom
 import { DialogueBubbleComponent } from "../../components/dialogue-bubble/dialogue-bubble.component";
@@ -12,7 +13,7 @@ import { TranslationService } from "../../../../services";
 @Component({
   selector: 'app-welcome',
   standalone: true,
-  imports: [DialogueBubbleComponent],
+  imports: [DialogueBubbleComponent, TranslateModule],
   templateUrl: './welcome.component.html',
   styleUrl: './welcome.component.scss',
 })

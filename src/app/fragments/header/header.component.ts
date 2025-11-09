@@ -1,6 +1,7 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LucideAngularModule, Undo, Printer, Languages } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Import of components custom
 import { TooltipComponent } from '../../components';
@@ -15,7 +16,7 @@ import { TranslationService } from '../../services';
 @Component({
   selector: 'app-header',
   standalone: true,
-  imports: [CommonModule, LucideAngularModule, TooltipComponent],
+  imports: [CommonModule, LucideAngularModule, TooltipComponent, TranslateModule],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })

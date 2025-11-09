@@ -1,5 +1,6 @@
 import { Component, inject, computed } from '@angular/core';
 import { LucideAngularModule, Dumbbell, Motorbike } from 'lucide-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 // Import of components custom
 import { StickyLabelComponent } from '../../components';
@@ -17,7 +18,7 @@ import { TranslationService } from '../../../../services';
 @Component({
   selector: 'app-cv',
   standalone: true,
-  imports: [StickyLabelComponent, LucideAngularModule],
+  imports: [StickyLabelComponent, LucideAngularModule, TranslateModule],
   templateUrl: './cv.component.html',
   styleUrl: './cv.component.scss',
 })
