@@ -208,7 +208,7 @@
     position: absolute;
     bottom: -.5rem;
     left: 0;
-    width: 40%;
+    width: 35%;
     max-width: 100%;
     aspect-ratio: 7 / 9;
     height: auto;
@@ -306,7 +306,7 @@
 .section__content--hobbies {
     display: flex;
     flex-direction: row;
-    gap: 1rem;
+    gap: .5rem;
     flex-wrap: wrap;
 }
 
@@ -318,18 +318,13 @@
     gap: .5rem;
 }
 
-
 .hobby__text {
     font-size: 2rem;
     font-family: var(--font-accent);
     font-weight: bold;
+    margin: 0;
     
 }
-
-
-
-
-
 
 // media queries
 @media (max-width: 1023px) {
