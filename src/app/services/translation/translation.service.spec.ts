@@ -1,6 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { signal } from '@angular/core';
+import { signal, WritableSignal } from '@angular/core';
 import { TranslationService } from './translation.service';
 import { LanguageStore } from '../../stores/language/language.store';
 import { Enum_APP_LANGUAGE, Type_APP_LANGUAGE } from '../../utils/types';
@@ -8,12 +8,19 @@ import { Enum_APP_LANGUAGE, Type_APP_LANGUAGE } from '../../utils/types';
 describe('TranslationService', () => {
   let service: TranslationService;
   let languageStore: jasmine.SpyObj<LanguageStore>;
+  let currentLanguageSignal: WritableSignal<Type_APP_LANGUAGE>;
 
   beforeEach(() => {
+    // Crear un signal real para el mock
+    currentLanguageSignal = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES);
+
     // Crear un mock del LanguageStore
     const languageStoreSpy = jasmine.createSpyObj('LanguageStore', ['getCurrentLanguage'], {
-      currentLanguage: signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES)
+      currentLanguage: currentLanguageSignal
     });
+
+    // Hacer que getCurrentLanguage retorne el valor del signal
+    languageStoreSpy.getCurrentLanguage.and.callFake(() => currentLanguageSignal());
 
     TestBed.configureTestingModule({
       providers: [
@@ -33,8 +40,7 @@ describe('TranslationService', () => {
 
   describe('translate', () => {
     beforeEach(() => {
-      languageStore.getCurrentLanguage.and.returnValue(Enum_APP_LANGUAGE.ES);
-      languageStore.currentLanguage = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES);
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.ES);
     });
 
     it('should translate to Spanish when language is ES', () => {
@@ -80,8 +86,7 @@ describe('TranslationService', () => {
 
   describe('translate - English', () => {
     beforeEach(() => {
-      languageStore.getCurrentLanguage.and.returnValue(Enum_APP_LANGUAGE.EN);
-      languageStore.currentLanguage = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.EN);
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.EN);
     });
 
     it('should translate to English when language is EN', () => {
@@ -122,8 +127,7 @@ describe('TranslationService', () => {
 
   describe('translate - invalid keys', () => {
     beforeEach(() => {
-      languageStore.getCurrentLanguage.and.returnValue(Enum_APP_LANGUAGE.ES);
-      languageStore.currentLanguage = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES);
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.ES);
     });
 
     it('should return the key if translation is not found', () => {
@@ -153,15 +157,13 @@ describe('TranslationService', () => {
   describe('language switching', () => {
     it('should switch translations when language changes', () => {
       // Inicialmente en español
-      languageStore.getCurrentLanguage.and.returnValue(Enum_APP_LANGUAGE.ES);
-      languageStore.currentLanguage = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES);
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.ES);
       
       let result = service.translate('fragments.header.changeLanguage');
       expect(result).toBe('Cambiar idioma');
 
       // Cambiar a inglés
-      languageStore.getCurrentLanguage.and.returnValue(Enum_APP_LANGUAGE.EN);
-      languageStore.currentLanguage = signal<Type_APP_LANGUAGE>(Enum_APP_LANGUAGE.EN);
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.EN);
       
       result = service.translate('fragments.header.changeLanguage');
       expect(result).toBe('Change language');
