@@ -1,5 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { Header } from './header.component';
 import { CvStore } from '../../stores/pages/home';
@@ -14,7 +15,7 @@ describe('Header', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Header],
+      imports: [Header, HttpClientTestingModule],
       providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();

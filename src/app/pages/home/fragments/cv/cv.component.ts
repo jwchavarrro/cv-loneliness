@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
 import { LucideAngularModule, Dumbbell, Motorbike } from 'lucide-angular';
 
 // Import of components custom
@@ -6,6 +6,9 @@ import { StickyLabelComponent } from '../../components';
 
 // Import of stores
 import { CvStore } from '../../../../stores/pages/home';
+
+// Import of services
+import { TranslationService } from '../../../../services';
 
 /**
  * @component Cv
@@ -21,56 +24,73 @@ import { CvStore } from '../../../../stores/pages/home';
 export class CvComponent {
   // Store global (como Jotai atom)
   cvStore = inject(CvStore);
+  
+  // Services
+  translationService = inject(TranslationService);
+  
+  // Traducciones reactivas
+  cvTitle = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.title')
+  );
+  cvSubtitle = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.subtitle')
+  );
+  cvDescription = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.description')
+  );
+  personalBioLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.personalBio')
+  );
+  experienceLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.experience')
+  );
+  educationLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.education')
+  );
+  skillsLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.skills')
+  );
+  hobbiesLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.hobbies')
+  );
+  contactLabel = computed(() => 
+    this.translationService.translate('pages.home.fragments.cv.contact')
+  );
 
   /**
    * @name mappingCVData
-   * @description Mapping of the CV data
+   * @description Mapping of the CV data - ahora viene del servicio de traducción
    */
-  mappingCVData = {
-    personalInfo: {
-      name: 'Sol',
-      profession: 'English Teacher | Professor',
-    },
-    personalBio:
-      "I'm a licensed English teacher with a passion for teaching and helping students of all ages and levels improve their English skills. My teaching style is dynamic, supportive, and focused on building confidence in language learners.",
-    experience: [
-      {
-        year: '2021 - 2023',
-        title: 'English Teacher, Colegio Primavera',
-        description:
-          'Taught English to middle and high school students. Developed engaging lesson plans, implemented interactive speaking activities, and promoted a positive classroom environment.',
-      },
-      {
-        year: '2018 - 2021',
-        title: 'English Teacher, Colegio Horizonte',
-        description:
-          'Delivered English language instruction to primary and secondary students. Organized extracurricular English conversation clubs and prepared students for language exams.',
-      },
-    ],
-    education: [
-      {
-        years: '2014 - 2018',
-        course: 'Licenciatura en Enseñanza del Inglés',
-        institution: 'Universidad Nacional',
-        note: 'Learned the fundamentals of English language teaching, methodology, and classroom management.',
-      },
-    ],
-    skills: [
-      'Lesson planning & curriculum design',
-      'Classroom management',
-      'Communicative teaching methods',
-      'Test & exam preparation',
-      'Student mentoring',
-      'Digital teaching tools (Google Classroom, Zoom)',
-    ],
-    hobbies: [
-      { icon: Dumbbell, name: 'Reading literature' },
-      { icon: Motorbike, name: 'Traveling' },
-    ],
-    contact: {
-      email: 'sol.teacher@email.com',
-      website: 'solenglish.com',
-      social: '@solenglish',
-    },
-  };
+  mappingCVData = computed(() => {
+    const cvData = this.translationService.cvData();
+    if (!cvData) {
+      // Datos por defecto mientras se cargan los JSON
+      return {
+        personalInfo: {
+          name: 'Sol',
+          profession: 'English Teacher | Professor',
+        },
+        personalBio: '',
+        experience: [],
+        education: [],
+        skills: [],
+        hobbies: [],
+        contact: {
+          email: '',
+          website: '',
+          social: '',
+        },
+      };
+    }
+    
+    // Mapear los hobbies con los iconos
+    const hobbyIcons = [Dumbbell, Motorbike];
+    return {
+      ...cvData,
+      hobbies: cvData.hobbies.map((hobby, index) => ({
+        ...hobby,
+        icon: hobbyIcons[index] || Dumbbell,
+      })),
+    };
+  });
 }

@@ -1,5 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { signal } from '@angular/core';
 
 import { Footer } from './footer.component';
@@ -22,7 +23,7 @@ describe('Footer', () => {
     languageStoreSpy.getCurrentLanguage.and.callFake(() => currentLanguageSignal());
 
     await TestBed.configureTestingModule({
-      imports: [Footer],
+      imports: [Footer, HttpClientTestingModule],
       providers: [
         provideZonelessChangeDetection(),
         TranslationService,

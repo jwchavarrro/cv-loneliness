@@ -1,0 +1,82 @@
+{
+  "fragments": {
+    "header": {
+      "changeLanguage": "Cambiar idioma",
+      "back": "Regresar",
+      "print": "Imprimir"
+    },
+    "footer": {
+      "copyright": "© 2024 Jveloper. Todos los derechos reservados.",
+      "github": "GitHub"
+    }
+  },
+  "pages": {
+    "home": {
+      "fragments": {
+        "welcome": {
+          "dialogue": "¡Bienvenido! Soy Soledad, profesora de inglés. Siéntete libre de explorar mi perfil profesional.",
+          "button": "Explorar CV"
+        },
+        "cv": {
+          "title": "Curriculum Vitae",
+          "subtitle": "Perfil profesional",
+          "description": "Descubre mi trayectoria profesional, educación y habilidades. Este CV proporciona una visión general de mi experiencia y calificaciones.",
+          "personalBio": "Biografía Personal",
+          "experience": "Experiencia",
+          "education": "Educación",
+          "skills": "Habilidades",
+          "hobbies": "Pasatiempos",
+          "contact": "Contacto"
+        }
+      }
+    }
+  },
+  "cv": {
+    "personalInfo": {
+      "name": "Sol",
+      "profession": "Profesora de Inglés | Profesora"
+    },
+    "personalBio": "Soy una profesora de inglés licenciada con pasión por la enseñanza y ayudar a estudiantes de todas las edades y niveles a mejorar sus habilidades en inglés. Mi estilo de enseñanza es dinámico, solidario y enfocado en generar confianza en los estudiantes de idiomas.",
+    "experience": [
+      {
+        "year": "2021 - 2023",
+        "title": "Profesora de Inglés, Colegio Primavera",
+        "description": "Enseñé inglés a estudiantes de secundaria y preparatoria. Desarrollé planes de lección atractivos, implementé actividades interactivas de conversación y promoví un ambiente positivo en el aula."
+      },
+      {
+        "year": "2018 - 2021",
+        "title": "Profesora de Inglés, Colegio Horizonte",
+        "description": "Impartí instrucción de idioma inglés a estudiantes de primaria y secundaria. Organicé clubes extracurriculares de conversación en inglés y preparé estudiantes para exámenes de idiomas."
+      }
+    ],
+    "education": [
+      {
+        "years": "2014 - 2018",
+        "course": "Licenciatura en Enseñanza del Inglés",
+        "institution": "Universidad Nacional",
+        "note": "Aprendí los fundamentos de la enseñanza del idioma inglés, metodología y gestión del aula."
+      }
+    ],
+    "skills": [
+      "Planificación de lecciones y diseño de currículo",
+      "Gestión del aula",
+      "Métodos de enseñanza comunicativa",
+      "Preparación para exámenes",
+      "Mentoría estudiantil",
+      "Herramientas de enseñanza digital (Google Classroom, Zoom)"
+    ],
+    "hobbies": [
+      {
+        "name": "Leer literatura"
+      },
+      {
+        "name": "Viajar"
+      }
+    ],
+    "contact": {
+      "email": "sol.teacher@email.com",
+      "website": "solenglish.com",
+      "social": "@solenglish"
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { WelcomeComponent } from './welcome.component';
 import { CvStore } from '../../../../stores/pages/home';
@@ -11,7 +12,7 @@ describe('WelcomeComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [WelcomeComponent],
+      imports: [WelcomeComponent, HttpClientTestingModule],
       providers: [provideZonelessChangeDetection()]
     })
     .compileComponents();

@@ -1,5 +1,6 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { signal, WritableSignal } from '@angular/core';
 import { TranslationService } from './translation.service';
 import { LanguageStore } from '../../stores/language/language.store';
@@ -23,6 +24,7 @@ describe('TranslationService', () => {
     languageStoreSpy.getCurrentLanguage.and.callFake(() => currentLanguageSignal());
 
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [
         TranslationService,
         { provide: LanguageStore, useValue: languageStoreSpy },
@@ -65,7 +67,7 @@ describe('TranslationService', () => {
 
     it('should translate welcome.dialogue to Spanish', () => {
       const result = service.translate('pages.home.fragments.welcome.dialogue');
-      expect(result).toBe('Welcome! I am Soledad, English teacher. Feel free to explore my professional profile.');
+      expect(result).toBe('¡Bienvenido! Soy Soledad, profesora de inglés. Siéntete libre de explorar mi perfil profesional.');
     });
 
     it('should translate welcome.button to Spanish', () => {
@@ -111,7 +113,7 @@ describe('TranslationService', () => {
 
     it('should translate welcome.dialogue to English', () => {
       const result = service.translate('pages.home.fragments.welcome.dialogue');
-      expect(result).toBe('¡Bienvenido! Soy Soledad, profesora de inglés. Siéntete libre de explorar mi perfil profesional.');
+      expect(result).toBe('Welcome! I am Soledad, English teacher. Feel free to explore my professional profile.');
     });
 
     it('should translate welcome.button to English', () => {
