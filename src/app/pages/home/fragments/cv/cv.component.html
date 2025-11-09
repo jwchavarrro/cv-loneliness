@@ -35,13 +35,13 @@
                     <div class="section">
                         <home-sticky-label [text]="'Experience'" />
                         <div class="section__content">
-                            @for (exp of mappingCVData.experience; track exp.year) {
+                            <!-- @for (exp of mappingCVData.experience; track exp.year) {
                                 <div class="section__item">
                                     <p class="section__year">{{ exp.year }}</p>
                                     <p class="section__subtitle">{{ exp.title }}</p>
                                     <p class="section__description">{{ exp.description }}</p>
                                 </div>
-                            }
+                            } -->
                         </div>
                     </div>
                 </div>
@@ -51,14 +51,14 @@
                     <div class="section">
                         <home-sticky-label [text]="'Education'"></home-sticky-label>
                         <div class="section__content">
-                            @for (edu of mappingCVData.education; track edu.years) {
+                            <!-- @for (edu of mappingCVData.education; track edu.years) {
                                 <div class="section__item">
                                     <p class="section__year">{{ edu.years }}</p>
                                     <p class="section__subtitle">{{ edu.course }}</p>
                                     <p class="section__subtitle--institution">{{ edu.institution }}</p>
                                     <p class="section__description">{{ edu.note }}</p>
                                 </div>
-                            }
+                            } -->
                         </div>
                     </div>
                 </div>
@@ -68,12 +68,12 @@
                     <div class="section">
                         <home-sticky-label [text]="'Hobbies'"></home-sticky-label>
                         <div class="section__content section__content--hobbies">
-                            @for (hobby of mappingCVData.hobbies; track hobby) {
+                            <!-- @for (hobby of mappingCVData.hobbies; track hobby) {
                                 <div class="hobby__item">
                                     <span class="hobby__icon">✨</span>
                                     <p class="hobby__text">{{ hobby }}</p>
                                 </div>
-                            }
+                            } -->
                         </div>
                     </div>
                 </div>
@@ -84,9 +84,9 @@
                         <home-sticky-label [text]="'Skills'"></home-sticky-label>
                         <div class="section__content section__content--skills">
                             <ul class="skills__list">
-                                @for (skill of mappingCVData.skills; track skill) {
+                                <!-- @for (skill of mappingCVData.skills; track skill) {
                                     <li class="skills__item">{{ skill }}</li>
-                                }
+                                } -->
                             </ul>
                         </div>
                     </div>
