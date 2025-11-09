@@ -12,7 +12,9 @@
   border-radius: 0.6rem;
   font-family: var(--font-title);
   font-size: 1rem;
-  white-space: nowrap;
+  white-space: normal;
+  word-wrap: break-word;
+  max-width: 15rem;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
   pointer-events: none;
   backdrop-filter: blur(4px);

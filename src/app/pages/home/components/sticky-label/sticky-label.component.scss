@@ -30,10 +30,19 @@
 }
 
 // media queries
-/* @media (max-width: 900px) {
-  .sticky-label {}
+@media (max-width: 900px) {
+  .sticky-label {
+
+    &__text {
+      font-size: 2rem;
+    }
+  }
 }
 
 @media (max-width: 600px) {
-  .sticky-label {}
-} */
+  .sticky-label {
+    &__text {
+      font-size: 1.5rem;
+    }
+  }
+}
