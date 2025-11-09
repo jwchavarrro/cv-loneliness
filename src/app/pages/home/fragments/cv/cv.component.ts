@@ -28,34 +28,18 @@ export class CvComponent {
   // Services
   translationService = inject(TranslationService);
   
-  // Traducciones reactivas
-  cvTitle = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.title')
-  );
-  cvSubtitle = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.subtitle')
-  );
-  cvDescription = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.description')
-  );
-  personalBioLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.personalBio')
-  );
-  experienceLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.experience')
-  );
-  educationLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.education')
-  );
-  skillsLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.skills')
-  );
-  hobbiesLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.hobbies')
-  );
-  contactLabel = computed(() => 
-    this.translationService.translate('pages.home.fragments.cv.contact')
-  );
+  // Traducciones reactivas - usando el helper del servicio para simplificar
+  cvTitle = this.translationService.translateComputed('pages.home.fragments.cv.title');
+  cvSubtitle = this.translationService.translateComputed('pages.home.fragments.cv.subtitle');
+  cvDescription = this.translationService.translateComputed('pages.home.fragments.cv.description');
+  personalBioLabel = this.translationService.translateComputed('pages.home.fragments.cv.personalBio');
+  experienceLabel = this.translationService.translateComputed('pages.home.fragments.cv.experience');
+  educationLabel = this.translationService.translateComputed('pages.home.fragments.cv.education');
+  skillsLabel = this.translationService.translateComputed('pages.home.fragments.cv.skills');
+  hobbiesLabel = this.translationService.translateComputed('pages.home.fragments.cv.hobbies');
+  contactLabel = this.translationService.translateComputed('pages.home.fragments.cv.contact');
+  greetingText = this.translationService.translateComputed('pages.home.fragments.cv.greeting');
+  professionText = this.translationService.translateComputed('pages.home.fragments.cv.profession');
 
   /**
    * @name mappingCVData

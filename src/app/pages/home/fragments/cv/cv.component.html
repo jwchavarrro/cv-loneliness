@@ -15,8 +15,8 @@
                 <div class="bio__item bio__item--row-1">
                     <div class="bio__subgrid">
                         <div class="bio__subitem bio__subitem--1">
-                            <p class="title--subitem-1">Hi, I'm {{ mappingCVData().personalInfo.name }}</p>
-                            <p class="text--subitem-1">{{ mappingCVData().personalInfo.profession }}</p>
+                            <p class="title--subitem-1">{{ greetingText() }} {{ mappingCVData().personalInfo.name }}</p>
+                            <p class="text--subitem-1">{{ professionText() }}</p>
                         </div>
                         <div class="bio__subitem bio__subitem--2">
                             <home-sticky-label [text]="personalBioLabel()" />

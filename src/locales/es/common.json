@@ -22,11 +22,13 @@
           "subtitle": "Perfil profesional",
           "description": "Descubre mi trayectoria profesional, educación y habilidades. Este CV proporciona una visión general de mi experiencia y calificaciones.",
           "personalBio": "Biografía Personal",
+          "greeting": "Hola, soy",
           "experience": "Experiencia",
           "education": "Educación",
           "skills": "Habilidades",
           "hobbies": "Pasatiempos",
-          "contact": "Contacto"
+          "contact": "Contacto",
+          "profession": "Profesora de Inglés | Profesora"
         }
       }
     }

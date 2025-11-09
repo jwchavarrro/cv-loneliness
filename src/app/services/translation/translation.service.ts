@@ -24,11 +24,13 @@ export type Type_TRANSLATION_KEY =
   | 'pages.home.fragments.cv.subtitle'
   | 'pages.home.fragments.cv.description'
   | 'pages.home.fragments.cv.personalBio'
+  | 'pages.home.fragments.cv.greeting'
   | 'pages.home.fragments.cv.experience'
   | 'pages.home.fragments.cv.education'
   | 'pages.home.fragments.cv.skills'
   | 'pages.home.fragments.cv.hobbies'
-  | 'pages.home.fragments.cv.contact';
+  | 'pages.home.fragments.cv.contact'
+  | 'pages.home.fragments.cv.profession';
 
 /**
  * @interface TranslationsStructure
@@ -58,11 +60,13 @@ interface TranslationsStructure {
           subtitle: string;
           description: string;
           personalBio: string;
+          greeting: string;
           experience: string;
           education: string;
           skills: string;
           hobbies: string;
           contact: string;
+          profession: string;
         };
       };
     };
@@ -129,11 +133,13 @@ interface TranslationsFile {
           subtitle: string;
           description: string;
           personalBio: string;
+          greeting: string;
           experience: string;
           education: string;
           skills: string;
           hobbies: string;
           contact: string;
+          profession: string;
         };
       };
     };
@@ -242,11 +248,13 @@ export class TranslationService {
                 subtitle: 'Perfil profesional',
                 description: 'Descubre mi trayectoria profesional, educación y habilidades. Este CV proporciona una visión general de mi experiencia y calificaciones.',
                 personalBio: 'Biografía Personal',
+                greeting: 'Hola, soy',
                 experience: 'Experiencia',
                 education: 'Educación',
                 skills: 'Habilidades',
                 hobbies: 'Pasatiempos',
-                contact: 'Contacto'
+                contact: 'Contacto',
+                profession: 'Profesora de Inglés | Profesora'
               }
             }
           }
@@ -277,11 +285,13 @@ export class TranslationService {
                 subtitle: 'Professional profile',
                 description: 'Discover my professional journey, education, and skills. This CV provides an overview of my experience and qualifications.',
                 personalBio: 'Personal Bio',
+                greeting: "Hi, I'm",
                 experience: 'Experience',
                 education: 'Education',
                 skills: 'Skills',
                 hobbies: 'Hobbies',
-                contact: 'Contact'
+                contact: 'Contact',
+                profession: "English Teacher | Professor"
               }
             }
           }
@@ -315,6 +325,17 @@ export class TranslationService {
     }
     
     return typeof value === 'string' ? value : key;
+  }
+
+  /**
+   * @name translateComputed
+   * @description Crea un computed signal reactivo para una clave de traducción
+   * Este método simplifica el uso en componentes, evitando crear computed signals manualmente
+   * @param key - Clave de traducción (ej: 'fragments.header.changeLanguage')
+   * @returns Computed signal que retorna el texto traducido
+   */
+  translateComputed(key: Type_TRANSLATION_KEY) {
+    return computed(() => this.translate(key));
   }
 
   /**

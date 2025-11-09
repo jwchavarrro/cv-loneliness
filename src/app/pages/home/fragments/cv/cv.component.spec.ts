@@ -71,7 +71,9 @@ describe('CvComponent', () => {
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
     expect(compiled.textContent).toContain('Sol');
-    expect(compiled.textContent).toContain('English Teacher | Professor');
+    // Puede estar en español o inglés dependiendo del idioma actual
+    const hasProfession = compiled.textContent?.includes('English Teacher | Professor') || compiled.textContent?.includes('Profesora de Inglés | Profesora');
+    expect(hasProfession).toBe(true);
   });
 
   it('should render experience section', () => {

@@ -22,11 +22,13 @@
           "subtitle": "Professional profile",
           "description": "Discover my professional journey, education, and skills. This CV provides an overview of my experience and qualifications.",
           "personalBio": "Personal Bio",
+          "greeting": "Hi, I'm",
           "experience": "Experience",
           "education": "Education",
           "skills": "Skills",
           "hobbies": "Hobbies",
-          "contact": "Contact"
+          "contact": "Contact",
+          "profession": "English Teacher | Professor"
         }
       }
     }
