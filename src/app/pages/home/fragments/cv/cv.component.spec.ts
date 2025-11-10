@@ -1,6 +1,8 @@
 import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 import { CvComponent } from './cv.component';
 import { CvStore } from '../../../../stores/pages/home';
@@ -11,9 +13,21 @@ describe('CvComponent', () => {
   let cvStore: CvStore;
 
   beforeEach(async () => {
+    const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant', 'use', 'setDefaultLang'], {
+      currentLang: 'en'
+    });
+    translateServiceSpy.instant.and.returnValue('Test');
+    translateServiceSpy.use.and.returnValue(of('en'));
+    translateServiceSpy.setDefaultLang.and.returnValue(undefined);
+    translateServiceSpy.onLangChange = of({ lang: 'en', translations: {} });
+    translateServiceSpy.onDefaultLangChange = of({ lang: 'en', translations: {} });
+
     await TestBed.configureTestingModule({
-      imports: [CvComponent, HttpClientTestingModule],
-      providers: [provideZonelessChangeDetection()]
+      imports: [CvComponent, HttpClientTestingModule, TranslateModule.forRoot()],
+      providers: [
+        provideZonelessChangeDetection(),
+        { provide: TranslateService, useValue: translateServiceSpy }
+      ]
     })
     .compileComponents();
 

@@ -2,6 +2,8 @@ import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { signal } from '@angular/core';
+import { TranslateService, TranslateModule } from '@ngx-translate/core';
+import { of } from 'rxjs';
 
 import { Footer } from './footer.component';
 import { TranslationService } from '../../services';
@@ -22,12 +24,22 @@ describe('Footer', () => {
     });
     languageStoreSpy.getCurrentLanguage.and.callFake(() => currentLanguageSignal());
 
+    const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant', 'use', 'setDefaultLang'], {
+      currentLang: 'es'
+    });
+    translateServiceSpy.instant.and.returnValue('Test');
+    translateServiceSpy.use.and.returnValue(of('es'));
+    translateServiceSpy.setDefaultLang.and.returnValue(undefined);
+    translateServiceSpy.onLangChange = of({ lang: 'es', translations: {} });
+    translateServiceSpy.onDefaultLangChange = of({ lang: 'es', translations: {} });
+
     await TestBed.configureTestingModule({
-      imports: [Footer, HttpClientTestingModule],
+      imports: [Footer, HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         provideZonelessChangeDetection(),
         TranslationService,
-        { provide: LanguageStore, useValue: languageStoreSpy }
+        { provide: LanguageStore, useValue: languageStoreSpy },
+        { provide: TranslateService, useValue: translateServiceSpy }
       ]
     })
     .compileComponents();
