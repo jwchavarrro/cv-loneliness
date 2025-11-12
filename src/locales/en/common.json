@@ -3,7 +3,8 @@
     "header": {
       "changeLanguage": "Change language",
       "back": "Back",
-      "print": "Print"
+      "download": "Download CV",
+      "share": "Share"
     },
     "footer": {
       "copyright": "© 2024 Jveloper. All rights reserved.",
