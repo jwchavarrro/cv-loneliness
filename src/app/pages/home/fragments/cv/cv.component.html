@@ -51,7 +51,7 @@
             <!-- Education -->
             <div class="bio__item bio__item--2-2">
                 <div class="section">
-                    <home-sticky-label [text]="educationLabel()"></home-sticky-label>
+                    <home-sticky-label [text]="educationLabel()" />
                     <ul class="section__content section__list">
                         @for (edu of mappingCVData().education; track edu.years) {
                         <li class="section__item">
@@ -70,7 +70,7 @@
 
             <!-- Skills -->
             <div class="bio__item bio__item--3-1">
-                <div class="section"><home-sticky-label [text]="skillsLabel()"></home-sticky-label>
+                <div class="section"><home-sticky-label [text]="skillsLabel()" />
                     <div class="section__content">
                         <ul class="skills__list">
                             @for (skill of mappingCVData().skills; track skill) {
@@ -82,16 +82,16 @@
 
             </div>
 
-            <!-- Skills and contact -->
+            <!-- Hobbies and Contact -->
             <div class="bio__item bio__item--3-2">
                 <div class="bio__subgrid bio__subgrid--3-2">
                     <div class="bio__subitem bio__subitem--3-2-1">
                         <div class="section">
-                            <home-sticky-label [text]="hobbiesLabel()"></home-sticky-label>
+                            <home-sticky-label [text]="hobbiesLabel()" />
                             <ul class="section__content section__content--hobbies section__list">
                                 @for (hobby of mappingCVData().hobbies; track hobby) {
                                 <li class="hobby__item">
-                                    <lucide-icon [img]="hobby.icon" [size]="40"></lucide-icon>
+                                    <lucide-icon [img]="hobby.icon" [size]="40" />
                                     <p class="hobby__text">{{ hobby.name }}</p>
                                 </li>
                                 }
@@ -100,11 +100,11 @@
                     </div>
                     <div class="bio__subitem bio__subitem--3-2-2">
                         <div class="section">
-                            <home-sticky-label [text]="contactLabel()"></home-sticky-label>
-                            <ul class="section__content section__content--contact section__list">
+                            <home-sticky-label [text]="contactLabel()" />
+                            <ul class="section__content">
                                 @for (contactItem of mappingCVData().contact; track contactItem.value) {
                                 <li class="contact__item">
-                                    <lucide-icon [img]="contactItem.icon" [size]="40"></lucide-icon>
+                                    <lucide-icon [img]="contactItem.icon" [size]="40" />
                                     <p class="contact__text">{{ contactItem.value }}</p>
                                 </li>
                                 }
