@@ -40,7 +40,6 @@ export interface CvData {
     years: string;
     course: string;
     institution: string;
-    note: string;
   }>;
   skills: string[];
   hobbies: Array<{

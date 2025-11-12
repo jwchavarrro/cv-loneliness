@@ -22,10 +22,10 @@
 }
 
 .text--cv {
-    font-size: 1.2rem;
-    max-width: 60rem;
+    font-size: 1.5rem;
     text-align: center;
-    margin: 0;
+    max-width: 60rem;
+    margin: 0 auto;
 }
 
 .bio {
@@ -51,12 +51,6 @@
     position: relative;
     overflow: hidden;
 }
-
-.text--bio {
-    font-size: 1.5rem;
-    text-align: end;
-}
-
 
 // Layout
 .bio__content {
@@ -177,6 +171,22 @@
 /**
 * Elements row 1
 */
+
+.text--bio {
+    font-size: 1.3rem;
+}
+
+.text--bio-small {
+    font-size: 1.1rem;
+    padding: 0;
+    margin: 0;
+}
+
+.text--bio-bold {
+    font-weight: 900;
+}
+
+
 .title--subitem-1 {
     font-family: var(--font-accent);
     font-size: 9rem;
@@ -186,7 +196,6 @@
 }
 
 .text--subitem-1 {
-    font-size: 1.2rem;
     text-align: right;
     font-style: italic;
 }
@@ -267,10 +276,6 @@
     flex-direction: column;
     gap: 6rem;
 
-    home-sticky-label {
-        display: inline-block;
-        margin-bottom: 0.5rem;
-    }
 }
 
 .section__content {
@@ -283,8 +288,7 @@
 .section__item {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
-    padding: 1rem;
+    gap: 0;
 }
 
 

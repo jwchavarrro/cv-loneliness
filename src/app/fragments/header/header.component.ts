@@ -13,6 +13,9 @@ import { LanguageStore } from '../../stores/language/language.store';
 // Import of services
 import { TranslationService } from '../../services';
 
+// Import of types
+import { Enum_APP_LANGUAGE } from '../../utils/types';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -21,10 +24,14 @@ import { TranslationService } from '../../services';
   styleUrl: './header.component.scss',
 })
 export class Header {
+[x: string]: any;
   // Stores globales
   cvStore = inject(CvStore);
   languageStore = inject(LanguageStore);
   translationService = inject(TranslationService);
+
+  // Enums
+  Enum_APP_LANGUAGE = Enum_APP_LANGUAGE;
 
   // Icons
   iconLanguages = Languages;
