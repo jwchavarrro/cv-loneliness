@@ -76,15 +76,10 @@ export class CvComponent {
         ...hobby,
         icon: hobbyIcons[index] || Dumbbell,
       })),
-      contact: [
-        {
-          ...cvData,
-          contact: cvData.contact.map((contact, index) => ({
-            ...contact,
-            icon: contactIcons[index] || Mail,
-          })),
-        }
-      ],
+      contact: cvData.contact.map((contact, index) => ({
+        ...contact,
+        icon: contactIcons[index] || Mail,
+      })),
     };
   });
 }

@@ -75,10 +75,16 @@
         "name": "Viajar"
       }
     ],
-    "contact": {
-      "email": "sol.teacher@email.com",
-      "website": "solenglish.com",
-      "social": "@solenglish"
-    }
+    "contact": [
+      {
+        "value": "sol.teacher@email.com"
+      },
+      {
+        "value": "solenglish.com"
+      },
+      {
+        "value": "@solenglish"
+      }
+    ]
   }
 }

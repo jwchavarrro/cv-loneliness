@@ -45,11 +45,9 @@ export interface CvData {
   hobbies: Array<{
     name: string;
   }>;
-  contact: {
-    email: string;
-    website: string;
-    social: string;
-  };
+  contact: Array<{
+    value: string;
+  }>;
 }
 
 interface TranslationsFile {

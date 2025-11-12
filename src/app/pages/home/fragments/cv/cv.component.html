@@ -101,11 +101,14 @@
                     <div class="bio__subitem bio__subitem--3-2-2">
                         <div class="section">
                             <home-sticky-label [text]="contactLabel()"></home-sticky-label>
-                            <!-- <ul class="section__content section__list">
-                                <li class="text--bio">{{ mappingCVData().contact.email }}</li>
-                                <li class="text--bio">{{ mappingCVData().contact.website }}</li>
-                                <li class="text--bio">{{ mappingCVData().contact.social }}</li>
-                            </ul> -->
+                            <ul class="section__content section__content--contact section__list">
+                                @for (contactItem of mappingCVData().contact; track contactItem.value) {
+                                <li class="contact__item">
+                                    <lucide-icon [img]="contactItem.icon" [size]="40"></lucide-icon>
+                                    <p class="contact__text">{{ contactItem.value }}</p>
+                                </li>
+                                }
+                            </ul>
                         </div>
                     </div>
                 </div>
