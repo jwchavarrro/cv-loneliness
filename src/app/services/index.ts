@@ -3,9 +3,9 @@
  * @description Exportaciones centralizadas de servicios
  */
 
-// Import of services and types
-export { TranslationService, type Type_TRANSLATION_KEY, type CvData } from './translation/translation.service';
+// Export of services  generales
+export * from './translation';
 
-// Services by pages
+// Export of services by pages
 export * from './pages';
 
