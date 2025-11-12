@@ -34,17 +34,17 @@
             <div class="bio__item bio__item--2-1">
                 <div class="section">
                     <home-sticky-label [text]="experienceLabel()" />
-                    <div class="section__content">
+                    <ul class="section__content section__list">
                         @for (exp of mappingCVData().experience; track exp.year) {
-                        <div class="section__item">
+                        <li class="section__item">
                             <div class="section__item--header">
                                 <p class="text--bio-small text--bio-bold">{{ exp.year }}</p>
                                 <p class="text--bio-small text--bio-bold">{{ exp.title }}</p>
                             </div>
                             <p class="text--bio">{{ exp.description }}</p>
-                        </div>
+                        </li>
                         }
-                    </div>
+                    </ul>
                 </div>
             </div>
 
@@ -52,9 +52,9 @@
             <div class="bio__item bio__item--2-2">
                 <div class="section">
                     <home-sticky-label [text]="educationLabel()"></home-sticky-label>
-                    <div class="section__content">
+                    <ul class="section__content section__list">
                         @for (edu of mappingCVData().education; track edu.years) {
-                        <div class="section__item">
+                        <li class="section__item">
                             <div class="section__item--header">
                                 <p class="text--bio-small text--bio-bold">{{ edu.years }}</p>
                                 <p class="text--bio-small text--bio-bold">{{ edu.course }}</p>
@@ -62,9 +62,9 @@
                             <div class="section__item--content">
                                 <p class="text--bio">{{ edu.institution }}</p>
                             </div>
-                        </div>
+                        </li>
                         }
-                    </div>
+                    </ul>
                 </div>
             </div>
 
@@ -88,24 +88,24 @@
                     <div class="bio__subitem bio__subitem--3-2-1">
                         <div class="section">
                             <home-sticky-label [text]="hobbiesLabel()"></home-sticky-label>
-                            <div class="section__content section__content--hobbies">
+                            <ul class="section__content section__content--hobbies section__list">
                                 @for (hobby of mappingCVData().hobbies; track hobby) {
-                                <div class="hobby__item">
+                                <li class="hobby__item">
                                     <lucide-icon [img]="hobby.icon" [size]="40"></lucide-icon>
                                     <p class="hobby__text">{{ hobby.name }}</p>
-                                </div>
+                                </li>
                                 }
-                            </div>
+                            </ul>
                         </div>
                     </div>
                     <div class="bio__subitem bio__subitem--3-2-2">
                         <div class="section">
                             <home-sticky-label [text]="contactLabel()"></home-sticky-label>
-                            <div class="section__content">
-                                <p class="text--bio">{{ mappingCVData().contact.email }}</p>
-                                <p class="text--bio">{{ mappingCVData().contact.website }}</p>
-                                <p class="text--bio">{{ mappingCVData().contact.social }}</p>
-                            </div>
+                            <ul class="section__content section__list">
+                                <li class="text--bio">{{ mappingCVData().contact.email }}</li>
+                                <li class="text--bio">{{ mappingCVData().contact.website }}</li>
+                                <li class="text--bio">{{ mappingCVData().contact.social }}</li>
+                            </ul>
                         </div>
                     </div>
                 </div>
