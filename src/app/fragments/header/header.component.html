@@ -14,13 +14,13 @@
                 }
             }
         </div>
-        <app-tooltip [text]="changeLanguageText()" [position]="'left'">
-            <button 
-                class="header__button" 
-                [attr.aria-label]="changeLanguageText()" 
-                (click)="changeLanguage()">
-                <lucide-icon [img]="iconLanguages" [size]="30"></lucide-icon>
-            </button>
-        </app-tooltip>
-    </div>
-</header>
+        <div class="">
+            <app-tooltip [text]="changeLanguageText()" [position]="'left'">
+                <button class="header__button" [attr.aria-label]="changeLanguageText()" (click)="changeLanguage()">
+                    <lucide-icon [img]="iconLanguages" [size]="30"></lucide-icon>
+                    <span>{{ languageStore.getCurrentLanguage() === Enum_APP_LANGUAGE.ES ? 'ES' : 'US' }}</span>
+                    </button>
+                </app-tooltip>
+            </div>
+        </div>
+    </header>

@@ -1,6 +1,6 @@
 import { Component, inject, computed } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { LucideAngularModule, Undo, Printer, Languages } from 'lucide-angular';
+import { LucideAngularModule, Undo, Download, Languages, Share2 } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 // Import of components custom
@@ -11,7 +11,10 @@ import { CvStore } from '../../stores/pages/home';
 import { LanguageStore } from '../../stores/language/language.store';
 
 // Import of services
-import { TranslationService } from '../../services';
+import { TranslationService, DownloadService } from '../../services';
+
+// Import of types
+import { Enum_APP_LANGUAGE } from '../../utils/types';
 
 @Component({
   selector: 'app-header',
@@ -21,16 +24,21 @@ import { TranslationService } from '../../services';
   styleUrl: './header.component.scss',
 })
 export class Header {
+  [x: string]: any;
   // Stores globales
   cvStore = inject(CvStore);
   languageStore = inject(LanguageStore);
   translationService = inject(TranslationService);
+  downloadService = inject(DownloadService);
+
+  // Enums
+  Enum_APP_LANGUAGE = Enum_APP_LANGUAGE;
 
   // Icons
   iconLanguages = Languages;
 
   // Traducciones reactivas
-  changeLanguageText = computed(() => 
+  changeLanguageText = computed(() =>
     this.translationService.translate('fragments.header.changeLanguage')
   );
 
@@ -40,6 +48,14 @@ export class Header {
    */
   changeLanguage() {
     this.languageStore.toggleLanguage();
+  }
+
+  /**
+   * @name downloadPdf
+   * @description Descarga el PDF del CV usando el servicio de descarga
+   */
+  downloadPdf() {
+    this.downloadService.downloadPdf();
   }
 
   /**
@@ -54,8 +70,14 @@ export class Header {
       action: () => this.cvStore.hideCvView(),
     },
     {
-      icon: Printer,
-      ariaLabel: this.translationService.translate('fragments.header.print'),
+      icon: Download,
+      ariaLabel: this.translationService.translate('fragments.header.download'),
+      condition: () => this.cvStore.showCv(),
+      action: () => this.downloadPdf(),
+    },
+    {
+      icon: Share2,
+      ariaLabel: this.translationService.translate('fragments.header.share'),
       condition: () => this.cvStore.showCv(),
       action: () => {},
     },

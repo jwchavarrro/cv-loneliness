@@ -127,9 +127,13 @@ describe('CvComponent', () => {
   it('should have contact information in mappingCVData', () => {
     const data = component.mappingCVData();
     expect(data.contact).toBeDefined();
-    expect(data.contact.email).toBeDefined();
-    expect(data.contact.website).toBeDefined();
-    expect(data.contact.social).toBeDefined();
+    expect(Array.isArray(data.contact)).toBe(true);
+    if (data.contact.length > 0) {
+      data.contact.forEach((contact: { value: string; icon: unknown }) => {
+        expect(contact.value).toBeDefined();
+        expect(contact.icon).toBeDefined();
+      });
+    }
   });
 
   it('should have experience items with correct structure', () => {
@@ -146,11 +150,10 @@ describe('CvComponent', () => {
   it('should have education items with correct structure', () => {
     const data = component.mappingCVData();
     if (data.education.length > 0) {
-      data.education.forEach((edu: { years: string; course: string; institution: string; note: string }) => {
+      data.education.forEach((edu: { years: string; course: string; institution: string }) => {
         expect(edu.years).toBeDefined();
         expect(edu.course).toBeDefined();
         expect(edu.institution).toBeDefined();
-        expect(edu.note).toBeDefined();
       });
     }
   });

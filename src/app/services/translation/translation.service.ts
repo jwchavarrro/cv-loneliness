@@ -8,7 +8,8 @@ import { Type_APP_LANGUAGE, Enum_APP_LANGUAGE } from '../../utils/types';
 export type Type_TRANSLATION_KEY = 
   | 'fragments.header.changeLanguage'
   | 'fragments.header.back'
-  | 'fragments.header.print'
+  | 'fragments.header.download'
+  | 'fragments.header.share'
   | 'fragments.footer.copyright'
   | 'fragments.footer.github'
   | 'pages.home.fragments.welcome.dialogue'
@@ -40,17 +41,14 @@ export interface CvData {
     years: string;
     course: string;
     institution: string;
-    note: string;
   }>;
   skills: string[];
   hobbies: Array<{
     name: string;
   }>;
-  contact: {
-    email: string;
-    website: string;
-    social: string;
-  };
+  contact: Array<{
+    value: string;
+  }>;
 }
 
 interface TranslationsFile {
@@ -58,7 +56,8 @@ interface TranslationsFile {
     header: {
       changeLanguage: string;
       back: string;
-      print: string;
+      download: string;
+      share: string;
     };
     footer: {
       copyright: string;
