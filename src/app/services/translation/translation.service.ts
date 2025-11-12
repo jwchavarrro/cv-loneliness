@@ -1,15 +1,10 @@
-import { Injectable, computed, inject } from '@angular/core';
-
-// Import of stores
+import { Injectable, computed, inject, signal } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { TranslateService } from '@ngx-translate/core';
+import { firstValueFrom } from 'rxjs';
 import { LanguageStore } from '../../stores/language/language.store';
-
-// Import of types
 import { Type_APP_LANGUAGE, Enum_APP_LANGUAGE } from '../../utils/types';
 
-/**
- * @type TranslationKey
- * @description Type for the translation key (refleja la estructura de carpetas)
- */
 export type Type_TRANSLATION_KEY = 
   | 'fragments.header.changeLanguage'
   | 'fragments.header.back'
@@ -19,13 +14,46 @@ export type Type_TRANSLATION_KEY =
   | 'pages.home.fragments.welcome.dialogue'
   | 'pages.home.fragments.welcome.button'
   | 'pages.home.fragments.cv.title'
-  | 'pages.home.fragments.cv.subtitle';
+  | 'pages.home.fragments.cv.subtitle'
+  | 'pages.home.fragments.cv.description'
+  | 'pages.home.fragments.cv.personalBio'
+  | 'pages.home.fragments.cv.greeting'
+  | 'pages.home.fragments.cv.experience'
+  | 'pages.home.fragments.cv.education'
+  | 'pages.home.fragments.cv.skills'
+  | 'pages.home.fragments.cv.hobbies'
+  | 'pages.home.fragments.cv.contact'
+  | 'pages.home.fragments.cv.profession';
 
-/**
- * @interface TranslationsStructure
- * @description Estructura de traducciones que refleja la organización de carpetas
- */
-interface TranslationsStructure {
+export interface CvData {
+  personalInfo: {
+    name: string;
+    profession: string;
+  };
+  personalBio: string;
+  experience: Array<{
+    year: string;
+    title: string;
+    description: string;
+  }>;
+  education: Array<{
+    years: string;
+    course: string;
+    institution: string;
+    note: string;
+  }>;
+  skills: string[];
+  hobbies: Array<{
+    name: string;
+  }>;
+  contact: {
+    email: string;
+    website: string;
+    social: string;
+  };
+}
+
+interface TranslationsFile {
   fragments: {
     header: {
       changeLanguage: string;
@@ -47,113 +75,88 @@ interface TranslationsStructure {
         cv: {
           title: string;
           subtitle: string;
+          description: string;
+          personalBio: string;
+          greeting: string;
+          experience: string;
+          education: string;
+          skills: string;
+          hobbies: string;
+          contact: string;
+          profession: string;
         };
       };
     };
   };
+  cv: CvData;
 }
 
-/**
- * @service TranslationService
- * @description Servicio para manejar las traducciones de la aplicación
- */
 @Injectable({
   providedIn: 'root'
 })
 export class TranslationService {
   private languageStore = inject(LanguageStore);
-
-  // Traducciones en español (organizadas por estructura de carpetas)
-  private translationsEs: TranslationsStructure = {
-    fragments: {
-      header: {
-        changeLanguage: 'Cambiar idioma',
-        back: 'Regresar',
-        print: 'Imprimir'
-      },
-      footer: {
-        copyright: '© 2024 Jveloper. Todos los derechos reservados.',
-        github: 'GitHub'
-      }
-    },
-    pages: {
-      home: {
-        fragments: {
-          welcome: {
-            dialogue: 'Welcome! I am Soledad, English teacher. Feel free to explore my professional profile.',
-            button: 'Explorar CV'
-          },
-          cv: {
-            title: 'Curriculum Vitae',
-            subtitle: 'Perfil profesional'
-          }
-        }
-      }
-    }
-  };
-
-  // Traducciones en inglés (organizadas por estructura de carpetas)
-  private translationsEn: TranslationsStructure = {
-    fragments: {
-      header: {
-        changeLanguage: 'Change language',
-        back: 'Back',
-        print: 'Print'
-      },
-      footer: {
-        copyright: '© 2024 Jveloper. All rights reserved.',
-        github: 'GitHub'
-      }
-    },
-    pages: {
-      home: {
-        fragments: {
-          welcome: {
-            dialogue: '¡Bienvenido! Soy Soledad, profesora de inglés. Siéntete libre de explorar mi perfil profesional.',
-            button: 'Explore CV'
-          },
-          cv: {
-            title: 'Curriculum Vitae',
-            subtitle: 'Professional profile'
-          }
-        }
-      }
-    }
-  };
-
-  // Computed signal que devuelve las traducciones según el idioma actual
-  private translations = computed(() => {
+  private http = inject(HttpClient);
+  private translateService = inject(TranslateService);
+  private cvDataEs = signal<CvData | null>(null);
+  private cvDataEn = signal<CvData | null>(null);
+  private translationsLoaded = signal<boolean>(false);
+  
+  cvData = computed(() => {
     const lang = this.languageStore.currentLanguage();
-    return lang === Enum_APP_LANGUAGE.ES ? this.translationsEs : this.translationsEn;
+    return lang === Enum_APP_LANGUAGE.ES ? this.cvDataEs() : this.cvDataEn();
   });
-
-  /**
-   * @name translate
-   * @description Traduce una clave al idioma actual usando la ruta de carpetas
-   * @param key - Clave de traducción (ej: 'fragments.header.changeLanguage')
-   * @returns Texto traducido
-   */
-  translate(key: Type_TRANSLATION_KEY): string {
-    const keys = key.split('.');
-    let value: any = this.translations();
+  
+  constructor() {
+    this.loadCvData();
     
-    for (const k of keys) {
-      if (value && typeof value === 'object' && k in value) {
-        value = value[k];
-      } else {
-        return key; // Retorna la clave si no encuentra la traducción
-      }
+    this.translateService.onLangChange.subscribe(() => {
+      this.translationsLoaded.set(true);
+      setTimeout(() => {
+        this.translationsLoaded.update(v => !v);
+        this.translationsLoaded.update(v => !v);
+      }, 0);
+    });
+    
+    this.translateService.onDefaultLangChange.subscribe(() => {
+      this.translationsLoaded.set(true);
+      setTimeout(() => {
+        this.translationsLoaded.update(v => !v);
+        this.translationsLoaded.update(v => !v);
+      }, 0);
+    });
+  }
+  
+  private async loadCvData(): Promise<void> {
+    try {
+      const [esData, enData] = await Promise.all([
+        firstValueFrom(this.http.get<TranslationsFile>('/locales/es/common.json')),
+        firstValueFrom(this.http.get<TranslationsFile>('/locales/en/common.json'))
+      ]);
+      
+      this.cvDataEs.set(esData.cv);
+      this.cvDataEn.set(enData.cv);
+    } catch (error) {
+      // Error silencioso
     }
+  }
+  
+  translate(key: Type_TRANSLATION_KEY): string {
+    this.languageStore.currentLanguage();
+    this.translationsLoaded();
     
-    return typeof value === 'string' ? value : key;
+    const translation = this.translateService.instant(key);
+    return translation === key ? key : translation;
   }
 
-  /**
-   * @name getCurrentLanguage
-   * @description Obtiene el idioma actual
-   */
+  translateComputed(key: Type_TRANSLATION_KEY) {
+    return computed(() => {
+      this.languageStore.currentLanguage();
+      return this.translate(key);
+    });
+  }
+
   getCurrentLanguage(): Type_APP_LANGUAGE {
     return this.languageStore.getCurrentLanguage();
   }
 }
-
