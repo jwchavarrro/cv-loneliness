@@ -20,7 +20,8 @@ describe('TranslationService', () => {
         header: {
           changeLanguage: 'Cambiar idioma',
           back: 'Regresar',
-          print: 'Imprimir'
+          download: 'Descargar CV',
+          share: 'Compartir'
         },
         footer: {
           copyright: '© 2024 Jveloper. Todos los derechos reservados.',
@@ -56,7 +57,8 @@ describe('TranslationService', () => {
         header: {
           changeLanguage: 'Change language',
           back: 'Back',
-          print: 'Print'
+          download: 'Download CV',
+          share: 'Share'
         },
         footer: {
           copyright: '© 2024 Jveloper. All rights reserved.',
@@ -162,9 +164,9 @@ describe('TranslationService', () => {
       expect(result).toBe('Regresar');
     });
 
-    it('should translate header.print to Spanish', () => {
-      const result = service.translate('fragments.header.print');
-      expect(result).toBe('Imprimir');
+    it('should translate header.download to Spanish', () => {
+      const result = service.translate('fragments.header.download');
+      expect(result).toBe('Descargar CV');
     });
 
     it('should translate footer.copyright to Spanish', () => {
@@ -208,9 +210,9 @@ describe('TranslationService', () => {
       expect(result).toBe('Back');
     });
 
-    it('should translate header.print to English', () => {
-      const result = service.translate('fragments.header.print');
-      expect(result).toBe('Print');
+    it('should translate header.download to English', () => {
+      const result = service.translate('fragments.header.download');
+      expect(result).toBe('Download CV');
     });
 
     it('should translate footer.copyright to English', () => {
