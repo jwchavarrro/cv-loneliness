@@ -4,5 +4,5 @@
  */
 
 // Import of services and types
-export { TranslationService, type Type_TRANSLATION_KEY } from './translation/translation.service';
+export { TranslationService, type Type_TRANSLATION_KEY, type CvData } from './translation/translation.service';
 
