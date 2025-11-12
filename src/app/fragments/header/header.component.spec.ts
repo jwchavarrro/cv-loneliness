@@ -25,7 +25,8 @@ describe('Header', () => {
       const translations: Record<string, string> = {
         'fragments.header.changeLanguage': 'Change language',
         'fragments.header.back': 'Back',
-        'fragments.header.print': 'Print'
+        'fragments.header.download': 'Download CV',
+        'fragments.header.share': 'Share'
       };
       return translations[key] || 'Test';
     });
@@ -134,25 +135,25 @@ describe('Header', () => {
     expect(visibleButtons.length).toBe(0);
   });
 
-  it('should have print button in navigationButtonsHeader', () => {
+  it('should have download button in navigationButtonsHeader', () => {
     cvStore.showCvView();
     fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
-    // El botón print es el segundo en el array y tiene el icono Printer
-    const printButton = buttons.find(btn => btn.ariaLabel === 'Print' || btn.ariaLabel === 'Imprimir');
-    expect(printButton).toBeTruthy();
-    expect(printButton?.icon).toBeTruthy();
+    // El botón download es el segundo en el array
+    const downloadButton = buttons.find(btn => btn.ariaLabel === 'Download CV' || btn.ariaLabel === 'Descargar CV');
+    expect(downloadButton).toBeTruthy();
+    expect(downloadButton?.icon).toBeTruthy();
   });
 
-  it('should call print action when print button is clicked', () => {
+  it('should call download action when download button is clicked', () => {
     cvStore.showCvView();
     fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
-    // El botón print es el segundo en el array
-    const printButton = buttons.find(btn => btn.ariaLabel === 'Print' || btn.ariaLabel === 'Imprimir');
-    expect(printButton).toBeTruthy();
-    if (printButton) {
-      expect(() => printButton.action()).not.toThrow();
+    // El botón download es el segundo en el array
+    const downloadButton = buttons.find(btn => btn.ariaLabel === 'Download CV' || btn.ariaLabel === 'Descargar CV');
+    expect(downloadButton).toBeTruthy();
+    if (downloadButton) {
+      expect(() => downloadButton.action()).not.toThrow();
     }
   });
 

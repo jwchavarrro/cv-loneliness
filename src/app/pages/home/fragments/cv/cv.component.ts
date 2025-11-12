@@ -1,5 +1,5 @@
 import { Component, inject, computed } from '@angular/core';
-import { LucideAngularModule, Dumbbell, Motorbike } from 'lucide-angular';
+import { LucideAngularModule, Dumbbell, Motorbike, Globe, Mail, Share2 } from 'lucide-angular';
 import { TranslateModule } from '@ngx-translate/core';
 
 // Import of components custom
@@ -60,21 +60,25 @@ export class CvComponent {
         education: [],
         skills: [],
         hobbies: [],
-        contact: {
-          email: '',
-          website: '',
-          social: '',
-        },
+        contact: [],
       };
     }
     
-    // Mapear los hobbies con los iconos
+    /**
+     * Mapear los hobbies con los iconos
+     * Mapear el contacto con los iconos
+     */
     const hobbyIcons = [Dumbbell, Motorbike];
+    const contactIcons = [Mail, Globe, Share2];
     return {
       ...cvData,
       hobbies: cvData.hobbies.map((hobby, index) => ({
         ...hobby,
         icon: hobbyIcons[index] || Dumbbell,
+      })),
+      contact: cvData.contact.map((contact, index) => ({
+        ...contact,
+        icon: contactIcons[index] || Mail,
       })),
     };
   });
