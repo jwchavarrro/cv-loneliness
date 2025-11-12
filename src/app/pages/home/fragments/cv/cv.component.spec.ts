@@ -8,7 +8,7 @@ import { signal } from '@angular/core';
 import { CvComponent } from './cv.component';
 import { CvStore } from '../../../../stores/pages/home';
 import { TranslationService } from '../../../../services';
-import { CvData } from '../../../../services/translation/translation.service';
+import { CvData } from '../../../../services';
 
 describe('CvComponent', () => {
   let component: CvComponent;
