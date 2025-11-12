@@ -3,7 +3,11 @@
  * @description Tipos para el servicio de traducción
  */
 
-export type Type_TRANSLATION_KEY = 
+/**
+ * @type Type_TRANSLATION_KEY
+ * @description Tipo para las claves de traducción
+ */
+export type Type_TRANSLATION_KEY =
   | 'fragments.header.changeLanguage'
   | 'fragments.header.back'
   | 'fragments.header.download'
@@ -24,6 +28,10 @@ export type Type_TRANSLATION_KEY =
   | 'pages.home.fragments.cv.contact'
   | 'pages.home.fragments.cv.profession';
 
+/**
+ * @interface CvData
+ * @description Interface for the CV data
+ */
 export interface CvData {
   personalInfo: {
     name: string;
@@ -49,6 +57,10 @@ export interface CvData {
   }>;
 }
 
+/**
+ * @interface TranslationsFile
+ * @description Interface for the translations file
+ */
 export interface TranslationsFile {
   fragments: {
     header: {
@@ -87,4 +99,3 @@ export interface TranslationsFile {
   };
   cv: CvData;
 }
-
