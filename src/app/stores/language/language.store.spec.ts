@@ -47,6 +47,7 @@ describe('LanguageStore', () => {
 
   it('should initialize with stored language from localStorage', () => {
     TestBed.resetTestingModule();
+    localStorage.clear();
     localStorage.setItem(STORAGE_KEY, Enum_APP_LANGUAGE.ES);
     
     const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['use', 'setDefaultLang'], {
@@ -65,27 +66,10 @@ describe('LanguageStore', () => {
       ]
     });
     const newStore = TestBed.inject(LanguageStore);
-    expect(newStore.getCurrentLanguage()).toBe(Enum_APP_LANGUAGE.EN);
+    expect(newStore.getCurrentLanguage()).toBe(Enum_APP_LANGUAGE.ES);
     
     TestBed.resetTestingModule();
     localStorage.clear();
-    
-    const translateServiceSpy2 = jasmine.createSpyObj('TranslateService', ['use', 'setDefaultLang'], {
-      currentLang: null
-    });
-    translateServiceSpy2.use.and.returnValue(of('en'));
-    translateServiceSpy2.setDefaultLang.and.returnValue(undefined);
-    translateServiceSpy2.onLangChange = of({ lang: 'en', translations: {} });
-    translateServiceSpy2.onDefaultLangChange = of({ lang: 'en', translations: {} });
-    
-    TestBed.configureTestingModule({
-      providers: [
-        LanguageStore,
-        { provide: TranslateService, useValue: translateServiceSpy2 },
-        provideZonelessChangeDetection()
-      ]
-    });
-    store = TestBed.inject(LanguageStore);
   });
 
   it('should initialize with EN when localStorage has invalid value', () => {

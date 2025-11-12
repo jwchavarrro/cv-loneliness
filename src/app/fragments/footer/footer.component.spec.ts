@@ -16,6 +16,7 @@ describe('Footer', () => {
   let translationService: TranslationService;
   let languageStore: LanguageStore;
   let currentLanguageSignal: ReturnType<typeof signal<Enum_APP_LANGUAGE>>;
+  let translateServiceSpy: jasmine.SpyObj<TranslateService>;
 
   beforeEach(async () => {
     currentLanguageSignal = signal<Enum_APP_LANGUAGE>(Enum_APP_LANGUAGE.ES);
@@ -24,14 +25,14 @@ describe('Footer', () => {
     });
     languageStoreSpy.getCurrentLanguage.and.callFake(() => currentLanguageSignal());
 
-    const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant', 'use', 'setDefaultLang'], {
-      currentLang: 'es'
+    translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant', 'use', 'setDefaultLang'], {
+      currentLang: 'es',
+      onLangChange: of({ lang: 'es', translations: {} }),
+      onDefaultLangChange: of({ lang: 'es', translations: {} })
     });
-    translateServiceSpy.instant.and.returnValue('Test');
-    translateServiceSpy.use.and.returnValue(of('es'));
-    translateServiceSpy.setDefaultLang.and.returnValue(undefined);
-    translateServiceSpy.onLangChange = of({ lang: 'es', translations: {} });
-    translateServiceSpy.onDefaultLangChange = of({ lang: 'es', translations: {} });
+    translateServiceSpy.instant.and.returnValue('© Test');
+    translateServiceSpy.use.and.returnValue(of({ lang: 'es', translations: {} }));
+    translateServiceSpy.setDefaultLang.and.returnValue(of({ lang: 'es', translations: {} }));
 
     await TestBed.configureTestingModule({
       imports: [Footer, HttpClientTestingModule, TranslateModule.forRoot()],

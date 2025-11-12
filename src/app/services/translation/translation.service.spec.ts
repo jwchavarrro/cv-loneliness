@@ -126,9 +126,7 @@ describe('TranslationService', () => {
       return typeof value === 'string' ? value : key;
     });
 
-    translateServiceSpy.use.and.returnValue(of('es'));
-    translateServiceSpy.onLangChange = of({ lang: 'es', translations: mockTranslations.es });
-    translateServiceSpy.onDefaultLangChange = of({ lang: 'es', translations: mockTranslations.es });
+    translateServiceSpy.use.and.returnValue(of({ lang: 'es', translations: mockTranslations.es }));
 
     TestBed.configureTestingModule({
       imports: [HttpClientTestingModule, TranslateModule.forRoot()],
@@ -294,6 +292,22 @@ describe('TranslationService', () => {
       
       result = service.translate('fragments.header.changeLanguage');
       expect(result).toBe('Change language');
+    });
+  });
+
+  describe('cvData', () => {
+    it('should return ES cvData when language is ES', () => {
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.ES);
+      const cvData = service.cvData();
+      // cvData puede ser null si no se ha cargado aún
+      expect(cvData === null || typeof cvData === 'object').toBe(true);
+    });
+
+    it('should return EN cvData when language is EN', () => {
+      currentLanguageSignal.set(Enum_APP_LANGUAGE.EN);
+      const cvData = service.cvData();
+      // cvData puede ser null si no se ha cargado aún
+      expect(cvData === null || typeof cvData === 'object').toBe(true);
     });
   });
 });

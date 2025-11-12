@@ -17,13 +17,13 @@ describe('Header', () => {
 
   beforeEach(async () => {
     const translateServiceSpy = jasmine.createSpyObj('TranslateService', ['instant', 'use', 'setDefaultLang'], {
-      currentLang: 'en'
+      currentLang: 'en',
+      onLangChange: of({ lang: 'en', translations: {} }),
+      onDefaultLangChange: of({ lang: 'en', translations: {} })
     });
     translateServiceSpy.instant.and.returnValue('Test');
-    translateServiceSpy.use.and.returnValue(of('en'));
-    translateServiceSpy.setDefaultLang.and.returnValue(undefined);
-    translateServiceSpy.onLangChange = of({ lang: 'en', translations: {} });
-    translateServiceSpy.onDefaultLangChange = of({ lang: 'en', translations: {} });
+    translateServiceSpy.use.and.returnValue(of({ lang: 'en', translations: {} }));
+    translateServiceSpy.setDefaultLang.and.returnValue(of({ lang: 'en', translations: {} }));
 
     await TestBed.configureTestingModule({
       imports: [Header, HttpClientTestingModule, TranslateModule.forRoot()],
@@ -96,8 +96,9 @@ describe('Header', () => {
     fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
     const backButton = buttons.find(btn => 
-      btn.ariaLabel === 'Regresar' || btn.ariaLabel === 'Back'
+      btn.ariaLabel && (btn.ariaLabel.includes('Regresar') || btn.ariaLabel.includes('Back'))
     );
+    expect(backButton).toBeTruthy();
     if (backButton) {
       backButton.action();
       expect(cvStore.hideCvView).toHaveBeenCalled();
@@ -132,7 +133,7 @@ describe('Header', () => {
     fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
     const printButton = buttons.find(btn => 
-      btn.ariaLabel === 'Imprimir' || btn.ariaLabel === 'Print'
+      btn.ariaLabel && (btn.ariaLabel.includes('Imprimir') || btn.ariaLabel.includes('Print'))
     );
     expect(printButton).toBeTruthy();
     expect(printButton?.icon).toBeTruthy();
@@ -143,8 +144,9 @@ describe('Header', () => {
     fixture.detectChanges();
     const buttons = component.navigationButtonsHeader();
     const printButton = buttons.find(btn => 
-      btn.ariaLabel === 'Imprimir' || btn.ariaLabel === 'Print'
+      btn.ariaLabel && (btn.ariaLabel.includes('Imprimir') || btn.ariaLabel.includes('Print'))
     );
+    expect(printButton).toBeTruthy();
     if (printButton) {
       expect(() => printButton.action()).not.toThrow();
     }
