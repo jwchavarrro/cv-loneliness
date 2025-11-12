@@ -11,7 +11,7 @@ import { CvStore } from '../../stores/pages/home';
 import { LanguageStore } from '../../stores/language/language.store';
 
 // Import of services
-import { TranslationService, DownloadService } from '../../services';
+import { TranslationService, DownloadService, ShareService } from '../../services';
 
 // Import of types
 import { Enum_APP_LANGUAGE } from '../../utils/types';
@@ -30,6 +30,7 @@ export class Header {
   languageStore = inject(LanguageStore);
   translationService = inject(TranslationService);
   downloadService = inject(DownloadService);
+  shareService = inject(ShareService);
 
   // Enums
   Enum_APP_LANGUAGE = Enum_APP_LANGUAGE;
@@ -59,6 +60,14 @@ export class Header {
   }
 
   /**
+   * @name shareCv
+   * @description Comparte el CV usando el servicio de compartir
+   */
+  shareCv() {
+    this.shareService.share();
+  }
+
+  /**
    * @name navigationButtonsHeader
    * @description Buttons for the header navigation (reactivo al cambio de idioma)
    */
@@ -79,7 +88,7 @@ export class Header {
       icon: Share2,
       ariaLabel: this.translationService.translate('fragments.header.share'),
       condition: () => this.cvStore.showCv(),
-      action: () => {},
+      action: () => this.shareCv(),
     },
   ]);
 }
