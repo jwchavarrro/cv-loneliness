@@ -23,7 +23,7 @@ import { Enum_APP_LANGUAGE } from '../../utils/types';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss',
 })
-export class Header {
+export class HeaderComponent {
   [x: string]: any;
   // Stores globales
   cvStore = inject(CvStore);

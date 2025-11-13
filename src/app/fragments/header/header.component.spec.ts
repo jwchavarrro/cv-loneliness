@@ -4,14 +4,14 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { Header } from './header.component';
+import { HeaderComponent } from './header.component';
 import { CvStore } from '../../stores/pages/home';
 import { LanguageStore } from '../../stores/language/language.store';
 import { TranslationService } from '../../services';
 
-describe('Header', () => {
-  let component: Header;
-  let fixture: ComponentFixture<Header>;
+describe('HeaderComponent', () => {
+  let component: HeaderComponent;
+  let fixture: ComponentFixture<HeaderComponent>;
   let cvStore: CvStore;
   let languageStore: LanguageStore;
 
@@ -34,7 +34,7 @@ describe('Header', () => {
     translateServiceSpy.setDefaultLang.and.returnValue(of({ lang: 'en', translations: {} }));
 
     await TestBed.configureTestingModule({
-      imports: [Header, HttpClientTestingModule, TranslateModule.forRoot()],
+      imports: [HeaderComponent, HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         provideZonelessChangeDetection(),
         { provide: TranslateService, useValue: translateServiceSpy }
@@ -42,7 +42,7 @@ describe('Header', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Header);
+    fixture = TestBed.createComponent(HeaderComponent);
     component = fixture.componentInstance;
     cvStore = component.cvStore;
     languageStore = component.languageStore;
