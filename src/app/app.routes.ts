@@ -5,10 +5,15 @@ import { HomeComponent, ContactComponent } from './pages';
 export const routes: Routes = [
     {
         path: '',
-        component: HomeComponent
+        component: HomeComponent,
     },
     {
         path: 'contact',
-        component: ContactComponent
+        component: ContactComponent,
     },
+    {
+        path: '**',
+        redirectTo: '',
+        pathMatch: 'full',
+    }
 ];

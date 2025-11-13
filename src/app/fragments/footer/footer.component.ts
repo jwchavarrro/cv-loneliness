@@ -11,7 +11,7 @@ import { TranslationService } from '../../services';
   templateUrl: './footer.component.html',
   styleUrl: './footer.component.scss',
 })
-export class Footer {
+export class FooterComponent {
   translationService = inject(TranslationService);
 
   // Traducciones reactivas

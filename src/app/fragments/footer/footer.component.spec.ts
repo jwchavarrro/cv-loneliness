@@ -5,14 +5,14 @@ import { signal } from '@angular/core';
 import { TranslateService, TranslateModule } from '@ngx-translate/core';
 import { of } from 'rxjs';
 
-import { Footer } from './footer.component';
+import { FooterComponent } from './footer.component';
 import { TranslationService } from '../../services';
 import { LanguageStore } from '../../stores/language/language.store';
 import { Enum_APP_LANGUAGE } from '../../utils/types';
 
-describe('Footer', () => {
-  let component: Footer;
-  let fixture: ComponentFixture<Footer>;
+describe('FooterComponent', () => {
+  let component: FooterComponent;
+  let fixture: ComponentFixture<FooterComponent>;
   let translationService: TranslationService;
   let languageStore: LanguageStore;
   let currentLanguageSignal: ReturnType<typeof signal<Enum_APP_LANGUAGE>>;
@@ -35,7 +35,7 @@ describe('Footer', () => {
     translateServiceSpy.setDefaultLang.and.returnValue(of({ lang: 'es', translations: {} }));
 
     await TestBed.configureTestingModule({
-      imports: [Footer, HttpClientTestingModule, TranslateModule.forRoot()],
+      imports: [FooterComponent, HttpClientTestingModule, TranslateModule.forRoot()],
       providers: [
         provideZonelessChangeDetection(),
         TranslationService,
@@ -45,7 +45,7 @@ describe('Footer', () => {
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Footer);
+    fixture = TestBed.createComponent(FooterComponent);
     component = fixture.componentInstance;
     translationService = TestBed.inject(TranslationService);
     languageStore = TestBed.inject(LanguageStore);
